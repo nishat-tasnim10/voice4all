@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 export default function Header() {
@@ -23,9 +24,9 @@ export default function Header() {
 
       {/* Navigation */}
       <nav className="header-nav">
-        <a href="/">Home</a>
-        <a href="/complaints">Complaints</a>
-        <a href="/about">About</a>
+       <Link to="/">Home</Link>
+        <Link to="/submit">Submit Complaints</Link>
+        <a href="/admin">Admin</a>
       </nav>
 
       {/* Profile */}

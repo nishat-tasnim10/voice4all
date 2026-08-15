@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./footer";
 import "./submit.css";
@@ -70,7 +71,27 @@ export default function Submit() {
                 required
               ></textarea>
             </div>
+            
+{/* DEPARTMENT */}
+<div className="form-section">
+  <label htmlFor="department">
+    Department
+  </label>
 
+  <select id="department" required>
+  <option value="">Select department</option>
+  <option value="roads">Roads & Infrastructure</option>
+  <option value="waste">Waste Management</option>
+  <option value="water">Water Supply</option>
+  <option value="drainage">Drainage & Sewerage</option>
+  <option value="lighting">Street Lighting</option>
+  <option value="health">Public Health</option>
+  <option value="parks">Parks & Environment</option>
+  <option value="traffic">Traffic & Transportation</option>
+  <option value="maintenance">Building & Maintenance</option>
+  <option value="other">Other</option>
+</select>
+</div>
 
             {/* PRIORITY */}
             <div className="form-section">

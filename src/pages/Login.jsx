@@ -1,9 +1,18 @@
+
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/submit");
+  };
 
   return (
     <div className="login-page">
@@ -93,13 +102,11 @@ export default function Login() {
 
         </section>
 
-
         {/* RIGHT SIDE */}
         <section className="login-section">
 
           <div className="login-card">
 
-            {/* TITLE CHANGES */}
             <h2>
               {isSignUp ? "Sign Up" : "Login"}
             </h2>
@@ -110,7 +117,7 @@ export default function Login() {
                 : "Access your Voice4All account"}
             </p>
 
-            <form>
+            <form onSubmit={handleSubmit}>
 
               {/* NAME ONLY FOR SIGN UP */}
               {isSignUp && (
@@ -127,7 +134,6 @@ export default function Login() {
                 </div>
               )}
 
-
               {/* EMAIL */}
               <div className="input-group">
 
@@ -141,7 +147,6 @@ export default function Login() {
 
               </div>
 
-
               {/* PASSWORD */}
               <div className="input-group">
 
@@ -150,11 +155,7 @@ export default function Login() {
                 <div className="password-wrapper">
 
                   <input
-                    type={
-                      showPassword
-                        ? "text"
-                        : "password"
-                    }
+                    type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
                     required
                   />
@@ -173,7 +174,6 @@ export default function Login() {
 
               </div>
 
-
               {/* CONFIRM PASSWORD FOR SIGN UP */}
               {isSignUp && (
                 <div className="input-group">
@@ -188,7 +188,6 @@ export default function Login() {
 
                 </div>
               )}
-
 
               {/* LOGIN OPTIONS */}
               {!isSignUp && (
@@ -206,7 +205,6 @@ export default function Login() {
                 </div>
               )}
 
-
               {/* MAIN BUTTON */}
               <button
                 type="submit"
@@ -216,7 +214,6 @@ export default function Login() {
               </button>
 
             </form>
-
 
             {/* SWITCH BETWEEN LOGIN AND SIGN UP */}
             <p className="signup">

@@ -1,41 +1,36 @@
-import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from "./pages/Login";
+import Submit from "./pages/submit";
+import Dashboard from "./pages/Dashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 import Home from "./pages/Home";
 import Complaints from "./pages/Complaints";
 
 function App() {
-  const [page, setPage] = useState("home");
-
-  // Every page change starts from the top
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
-  }, [page]);
-
-  const goHome = () => {
-    setPage("home");
-  };
-
-  const goComplaints = () => {
-    setPage("complaints");
-  };
-
-  if (page === "complaints") {
-    return (
-      <Complaints
-        goHome={goHome}
-        goComplaints={goComplaints}
-      />
-    );
-  }
-
   return (
-    <Home
-      goHome={goHome}
-      goComplaints={goComplaints}
-    />
+    <BrowserRouter>
+      <Routes>
+
+        {/* Login */}
+        <Route path="/" element={<Login />} />
+
+        {/* User pages */}
+        <Route path="/submit" element={<Submit />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* Admin */}
+        <Route
+          path="/admin-dashboard"
+          element={<AdminDashboard />}
+        />
+
+        {/* Prachi's pages */}
+        <Route path="/home" element={<Home />} />
+        <Route path="/complaints" element={<Complaints />} />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
 

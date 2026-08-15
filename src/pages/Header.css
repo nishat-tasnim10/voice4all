@@ -1,3 +1,4 @@
+
 .site-header {
   width: 100%;
   height: 76px;
@@ -14,6 +15,8 @@
 
   position: relative;
   z-index: 100;
+
+  box-sizing: border-box;
 }
 
 
@@ -83,14 +86,16 @@
 
 
 /* Brand name */
+
 .header-brand-name {
   font-size: 23px;
   font-weight: 800;
-  color: #0B1F3A;
+
+  color: #0b1f3a;
 }
 
 .header-brand-name span {
-  color: #0D9488;
+  color: #0d9488;
 }
 
 
@@ -124,10 +129,15 @@
 
 
 /* =========================
-   PROFILE BUTTON
+   PROFILE
 ========================= */
 
 .header-profile {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
   padding: 10px 20px;
 
   border: none;
@@ -141,6 +151,8 @@
   font-size: 12px;
 
   font-weight: 700;
+
+  text-decoration: none;
 
   cursor: pointer;
 
@@ -169,5 +181,5 @@
   .header-brand-name {
     font-size: 20px;
   }
-
 }
+

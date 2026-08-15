@@ -1,14 +1,13 @@
+import { Link } from "react-router-dom";
 import "./Header.css";
 
-export default function Header({ goHome, goComplaints }) {
+export default function Header() {
   return (
     <header className="site-header">
 
-      {/* LOGO */}
-      <button
-        className="header-brand"
-        onClick={goHome}
-      >
+      {/* Voice4All Logo */}
+      <Link to="/" className="header-brand">
+
         <div className="header-brand-icon">
           <span></span>
           <span></span>
@@ -20,47 +19,30 @@ export default function Header({ goHome, goComplaints }) {
         <div className="header-brand-name">
           Voice<span>4</span>All
         </div>
-      </button>
 
+      </Link>
 
-      {/* NAVIGATION */}
+      {/* Navigation */}
       <nav className="header-nav">
 
-        <button
-          className="header-nav-link"
-          onClick={goHome}
-        >
+        <Link to="/">
           Home
-        </button>
+        </Link>
 
-        <button
-          className="header-nav-link"
-          onClick={goComplaints}
-        >
-          Complaints
-        </button>
+        <Link to="/submit">
+          Submit Complaints
+        </Link>
 
-        <button
-          className="header-nav-link"
-          onClick={() =>
-            alert("About page will be added next.")
-          }
-        >
-          About
-        </button>
+        <Link to="/admin-dashboard">
+          Admin
+        </Link>
 
       </nav>
 
-
-      {/* PROFILE */}
-      <button
-        className="header-profile"
-        onClick={() =>
-          alert("Profile page will be added next.")
-        }
-      >
+      {/* Profile */}
+      <Link to="/dashboard" className="header-profile">
         Profile
-      </button>
+      </Link>
 
     </header>
   );

@@ -1,7 +1,8 @@
 import { useState } from "react";
+import Header from "./Header";
 import "./Complaints.css";
 
-function Complaints({ goHome }) {
+function Complaints({ goHome, goComplaints }) {
   const [filter, setFilter] = useState("All");
 
   const complaints = [
@@ -66,19 +67,10 @@ function Complaints({ goHome }) {
     <div className="complaints-page">
 
       {/* HEADER */}
-      <header className="complaints-header">
-        <div className="complaints-logo">
-          <div className="complaints-logo-icon">🏙️</div>
-          <span>Voice4all</span>
-        </div>
-
-        <button
-          className="complaints-notification"
-          onClick={() => alert("You have no new notifications.")}
-        >
-          🔔
-        </button>
-      </header>
+      <Header
+        goHome={goHome}
+        goComplaints={goComplaints}
+      />
 
       {/* MAIN */}
       <main className="complaints-main">
@@ -87,6 +79,7 @@ function Complaints({ goHome }) {
 
           <div>
             <h1>My Complaints</h1>
+
             <p>
               Track the status of your submitted civic issues.
             </p>
@@ -97,17 +90,30 @@ function Complaints({ goHome }) {
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
           >
-            <option value="All">All Complaints</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Pending">Pending</option>
-            <option value="Resolved">Resolved</option>
+            <option value="All">
+              All Complaints
+            </option>
+
+            <option value="In Progress">
+              In Progress
+            </option>
+
+            <option value="Pending">
+              Pending
+            </option>
+
+            <option value="Resolved">
+              Resolved
+            </option>
           </select>
 
         </div>
 
+        {/* COMPLAINT CARDS */}
         <div className="complaints-grid">
 
           {filteredComplaints.map((item) => (
+
             <div
               className="complaint-card"
               key={item.id}
@@ -117,6 +123,7 @@ function Complaints({ goHome }) {
                 )
               }
             >
+
               <div className="complaint-content">
 
                 <div className="complaint-top">
@@ -141,15 +148,21 @@ function Complaints({ goHome }) {
 
                 </div>
 
-                <h2>{item.title}</h2>
+                <h2>
+                  {item.title}
+                </h2>
 
-                <p>{item.description}</p>
+                <p>
+                  {item.description}
+                </p>
 
               </div>
 
               <div className="complaint-footer">
 
-                <span>📅 {item.date}</span>
+                <span>
+                  📅 {item.date}
+                </span>
 
                 <span className="complaint-id">
                   ID: {item.id}
@@ -158,6 +171,7 @@ function Complaints({ goHome }) {
               </div>
 
             </div>
+
           ))}
 
         </div>
@@ -181,7 +195,10 @@ function Complaints({ goHome }) {
           <small>Home</small>
         </button>
 
-        <button className="complaints-nav-item active">
+        <button
+          className="complaints-nav-item active"
+          onClick={goComplaints}
+        >
           <span>📋</span>
           <small>Complaints</small>
         </button>

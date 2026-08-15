@@ -36,7 +36,7 @@ function Dashboard() {
                         <button
                             className="nav-btn"
                             onClick={() =>
-                                (window.location.href = "/submit-complaint")
+                                (window.location.href = "/my-complaints")
                             }
                         >
                             ➕ Submit Complaint
@@ -131,7 +131,11 @@ function Dashboard() {
                                 My Recent Complaints
                             </h2>
 
-                            <span>
+                            <span
+                                onClick={() =>
+                                    (window.location.href = "/my-complaints")
+                                }
+                            >
                                 View all
                             </span>
 
@@ -180,7 +184,12 @@ function Dashboard() {
                                         </td>
 
                                         <td>
-                                            <button className="view-btn">
+                                            <button
+                                                className="view-btn"
+                                                onClick={() =>
+                                                    (window.location.href = "/my-complaints")
+                                                }
+                                            >
                                                 View
                                             </button>
                                         </td>
@@ -211,7 +220,12 @@ function Dashboard() {
                                         </td>
 
                                         <td>
-                                            <button className="view-btn">
+                                            <button
+                                                className="view-btn"
+                                                onClick={() =>
+                                                    (window.location.href = "/my-complaints")
+                                                }
+                                            >
                                                 View
                                             </button>
                                         </td>
@@ -242,7 +256,12 @@ function Dashboard() {
                                         </td>
 
                                         <td>
-                                            <button className="view-btn">
+                                            <button
+                                                className="view-btn"
+                                                onClick={() =>
+                                                    (window.location.href = "/my-complaints")
+                                                }
+                                            >
                                                 View
                                             </button>
                                         </td>
@@ -264,7 +283,7 @@ function Dashboard() {
                         <button
                             id="submitBtn"
                             onClick={() =>
-                                (window.location.href = "/submit-complaint")
+                                (window.location.href = "/my-complaints")
                             }
                         >
                             ＋ Submit New Complaint

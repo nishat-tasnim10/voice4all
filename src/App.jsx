@@ -1,44 +1,34 @@
-//import Dashboard from "./pages/Dashboard";
-
-//function App() {
-  //return  <Dashboard />;
-//}
-
-//export default App;
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+```jsx
+import Submit from "./pages/submit";
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 function App() {
-    return (
-        <BrowserRouter>
+  return (
+    <BrowserRouter>
+      <Routes>
 
-            <Routes>
+        <Route path="/" element={<Login />} />
 
-                <Route
-                    path="/dashboard"
-                    element={<Dashboard />}
-                />
+        <Route path="/submit" element={<Submit />} />
 
-                <Route
-                    path="/admin-dashboard"
-                    element={<AdminDashboard />}
-                />
+        <Route
+          path="/dashboard"
+          element={<Dashboard />}
+        />
 
-                <Route
-                    path="/"
-                    element={<Dashboard />}
-                />
+        <Route
+          path="/admin-dashboard"
+          element={<AdminDashboard />}
+        />
 
-            </Routes>
-
-        </BrowserRouter>
-    );
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
-
-
-
-
+```

@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import "./Header.css";
 
@@ -6,7 +7,7 @@ export default function Header() {
     <header className="site-header">
 
       {/* Voice4All Logo */}
-      <a href="/" className="header-brand">
+      <Link to="/" className="header-brand">
 
         <div className="header-brand-icon">
           <span></span>
@@ -20,19 +21,25 @@ export default function Header() {
           Voice<span>4</span>All
         </div>
 
-      </a>
+      </Link>
 
       {/* Navigation */}
       <nav className="header-nav">
-       <Link to="/">Home</Link>
-        <Link to="/submit">Submit Complaints</Link>
-        <a href="/admin">Admin</a>
+        <Link to="/">Home</Link>
+
+        <Link to="/submit">
+          Submit Complaints
+        </Link>
+
+        <Link to="/admin-dashboard">
+          Admin
+        </Link>
       </nav>
 
       {/* Profile */}
-      <button className="header-profile">
+      <Link to="/dashboard" className="header-profile">
         Profile
-      </button>
+      </Link>
 
     </header>
   );

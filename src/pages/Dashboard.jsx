@@ -1,6 +1,7 @@
 import "./Dashboard.css";
 import Header from "./Header";
 import Footer from "./footer";
+import Submit from "./submit";
 
 function Dashboard() {
     return (
@@ -36,7 +37,7 @@ function Dashboard() {
                         <button
                             className="nav-btn"
                             onClick={() =>
-                                (window.location.href = "/submit-complaint")
+                                (window.location.href = "/submit")
                             }
                         >
                             ➕ Submit Complaint
@@ -264,7 +265,7 @@ function Dashboard() {
                         <button
                             id="submitBtn"
                             onClick={() =>
-                                (window.location.href = "/submit-complaint")
+                                (window.location.href = "/submit")
                             }
                         >
                             ＋ Submit New Complaint

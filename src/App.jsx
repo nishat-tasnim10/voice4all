@@ -1,7 +1,23 @@
-import Submit from "./pages/submit";
+import { useState } from "react";
+import Home from "./pages/Home";
+import Complaints from "./pages/Complaints";
 
 function App() {
-  return <Submit />;
+  const [page, setPage] = useState("home");
+
+  if (page === "complaints") {
+    return (
+      <Complaints
+        goHome={() => setPage("home")}
+      />
+    );
+  }
+
+  return (
+    <Home
+      goComplaints={() => setPage("complaints")}
+    />
+  );
 }
 
 export default App;

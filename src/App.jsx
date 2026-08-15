@@ -1,7 +1,7 @@
-import Login from "./pages/Login";
+import Submit from "./pages/submit";
 
 function App() {
-  return <Login />;
+  return <Submit />;
 }
 
 export default App;

@@ -1,0 +1,173 @@
+.site-header {
+  width: 100%;
+  height: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 6%;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e2e8f0;
+
+  position: relative;
+  z-index: 100;
+}
+
+
+/* =========================
+   VOICE4ALL BRAND
+========================= */
+
+.header-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  text-decoration: none;
+}
+
+
+/* Logo box */
+
+.header-brand-icon {
+  width: 43px;
+  height: 43px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  background: #e6f7f5;
+
+  border: 1px solid #bfe7e3;
+}
+
+
+/* Wave bars */
+
+.header-brand-icon span {
+  width: 3px;
+
+  border-radius: 10px;
+
+  background: #0d9488;
+}
+
+.header-brand-icon span:nth-child(1) {
+  height: 9px;
+}
+
+.header-brand-icon span:nth-child(2) {
+  height: 17px;
+}
+
+.header-brand-icon span:nth-child(3) {
+  height: 28px;
+}
+
+.header-brand-icon span:nth-child(4) {
+  height: 17px;
+}
+
+.header-brand-icon span:nth-child(5) {
+  height: 9px;
+}
+
+
+/* Brand name */
+.header-brand-name {
+  font-size: 23px;
+  font-weight: 800;
+  color: #0B1F3A;
+}
+
+.header-brand-name span {
+  color: #0D9488;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.header-nav {
+  display: flex;
+
+  align-items: center;
+
+  gap: 35px;
+}
+
+.header-nav a {
+  color: #0b1f3a;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  transition: 0.2s;
+}
+
+.header-nav a:hover {
+  color: #0d9488;
+}
+
+
+/* =========================
+   PROFILE BUTTON
+========================= */
+
+.header-profile {
+  padding: 10px 20px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #0b1f3a;
+
+  color: white;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.header-profile:hover {
+  background: #0d9488;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .site-header {
+    padding: 0 20px;
+  }
+
+  .header-nav {
+    display: none;
+  }
+
+  .header-brand-name {
+    font-size: 20px;
+  }
+
+}

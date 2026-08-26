@@ -66,7 +66,7 @@ function Dashboard() {
                     <div className="dashboard-welcome">
 
                         <h1>
-                            Welcome back, Arpan! 👋
+                            Welcome back! 👋
                         </h1>
 
                         <p>

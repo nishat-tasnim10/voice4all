@@ -20,9 +20,7 @@
 }
 
 
-/* =========================
-   VOICE4ALL BRAND
-========================= */
+
 
 .header-brand {
   display: flex;
@@ -34,7 +32,7 @@
 }
 
 
-/* Logo box */
+
 
 .header-brand-icon {
   width: 43px;
@@ -54,7 +52,7 @@
 }
 
 
-/* Wave bars */
+
 
 .header-brand-icon span {
   width: 3px;
@@ -99,10 +97,6 @@
 }
 
 
-/* =========================
-   NAVIGATION
-========================= */
-
 .header-nav {
   display: flex;
 
@@ -128,9 +122,7 @@
 }
 
 
-/* =========================
-   PROFILE
-========================= */
+
 
 .header-profile {
   display: inline-flex;
@@ -164,9 +156,7 @@
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+
 
 @media (max-width: 700px) {
 

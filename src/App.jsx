@@ -1,19 +1,36 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import ConnectUs from "./pages/ConnectUs";
 import Login from "./pages/Login";
 import Submit from "./pages/submit";
 import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import Home from "./pages/Home";
 import Complaints from "./pages/Complaints";
+import Sidebar from "./pages/Sidebar";
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+
+  // Hide Sidebar only on Login page
+  const isLoginPage = location.pathname === "/";
+
   return (
-    <BrowserRouter>
-      <Routes>
+    <>
+      {!isLoginPage && <Sidebar />}
 
+      <Routes>
         {/* Login */}
         <Route path="/" element={<Login />} />
+        <Route path="/connect-us" element={<ConnectUs />} />
+
+        {/* Home */}
+        <Route path="/home" element={<Home />} />
 
         {/* User pages */}
         <Route path="/submit" element={<Submit />} />
@@ -25,13 +42,23 @@ function App() {
           element={<AdminDashboard />}
         />
 
-        {/* Prachi's pages */}
-        <Route path="/home" element={<Home />} />
-        <Route path="/complaints" element={<Complaints />} />
-
+        {/* Complaints */}
+        <Route
+          path="/complaints"
+          element={<Complaints />}
+        />
       </Routes>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }
 
 export default App;
+

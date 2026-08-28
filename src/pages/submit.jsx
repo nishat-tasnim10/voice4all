@@ -43,7 +43,7 @@ export default function Submit() {
 
           <form className="complaint-form" onSubmit={handleSubmit}>
 
-            {/* SUBJECT */}
+          
             <div className="form-section">
               <label htmlFor="subject">
                 Subject
@@ -58,7 +58,7 @@ export default function Submit() {
             </div>
 
 
-            {/* DESCRIPTION */}
+          
             <div className="form-section">
               <label htmlFor="description">
                 Description
@@ -72,7 +72,7 @@ export default function Submit() {
               ></textarea>
             </div>
             
-{/* DEPARTMENT */}
+
 <div className="form-section">
   <label htmlFor="department">
     Department
@@ -93,7 +93,7 @@ export default function Submit() {
 </select>
 </div>
 
-            {/* PRIORITY */}
+            
             <div className="form-section">
               <label>
                 Priority
@@ -139,7 +139,7 @@ export default function Submit() {
             </div>
 
 
-            {/* IMAGE UPLOAD */}
+            
             <div className="form-section">
               <label>
                 Upload Images
@@ -168,7 +168,7 @@ export default function Submit() {
             </div>
 
 
-            {/* SUBMIT */}
+           
             <button
               type="submit"
               className="submit-button"

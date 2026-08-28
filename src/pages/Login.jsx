@@ -55,7 +55,7 @@ export default function Login() {
               inclusive and simple for everyone.
             </p>
 
-            {/* SOUND WAVE */}
+        
             <div className="sound-wave">
               <span style={{ height: "20px" }}></span>
               <span style={{ height: "30px" }}></span>
@@ -119,7 +119,7 @@ export default function Login() {
 
             <form onSubmit={handleSubmit}>
 
-              {/* NAME ONLY FOR SIGN UP */}
+             
               {isSignUp && (
                 <div className="input-group">
 
@@ -134,7 +134,7 @@ export default function Login() {
                 </div>
               )}
 
-              {/* EMAIL */}
+             
               <div className="input-group">
 
                 <label>Email</label>
@@ -147,7 +147,6 @@ export default function Login() {
 
               </div>
 
-              {/* PASSWORD */}
               <div className="input-group">
 
                 <label>Password</label>
@@ -189,7 +188,7 @@ export default function Login() {
                 </div>
               )}
 
-              {/* LOGIN OPTIONS */}
+             
               {!isSignUp && (
                 <div className="options">
 
@@ -205,7 +204,7 @@ export default function Login() {
                 </div>
               )}
 
-              {/* MAIN BUTTON */}
+           
               <button
                 type="submit"
                 className="sign-in-button"
@@ -215,7 +214,6 @@ export default function Login() {
 
             </form>
 
-            {/* SWITCH BETWEEN LOGIN AND SIGN UP */}
             <p className="signup">
 
               {isSignUp

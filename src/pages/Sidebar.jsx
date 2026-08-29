@@ -47,14 +47,14 @@ function Sidebar() {
                 <nav className="sidebar-menu">
 
                     <Link
-                        to="/submit-complaint"
+                        to="/submit"
                         onClick={handleNavigation}
                     >
                         Submit Complaint
                     </Link>
 
                     <Link
-                        to="/view-details"
+                         to="/complaints"
                         onClick={handleNavigation}
                     >
                         View Details
@@ -75,7 +75,7 @@ function Sidebar() {
                     </Link>
 
                     <Link
-                        to="/login"
+                      to="/"
                         onClick={handleNavigation}
                     >
                         Log Out

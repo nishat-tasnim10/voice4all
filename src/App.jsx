@@ -6,6 +6,9 @@ import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import Home from "./pages/Home";
 import Complaints from "./pages/Complaints";
+import FAQ from "./pages/FAQ";
+
+
 
 function App() {
   return (
@@ -28,6 +31,8 @@ function App() {
         {/* Prachi's pages */}
         <Route path="/home" element={<Home />} />
         <Route path="/complaints" element={<Complaints />} />
+
+        {/* FAQ - opened from Footer */} <Route path="/faq" element={<FAQ />} />
 
       </Routes>
     </BrowserRouter>

@@ -1,3 +1,4 @@
+
 import "./Footer.css";
 
 export default function Footer() {
@@ -15,8 +16,8 @@ export default function Footer() {
           </p>
           <div className="footer-socials">
             <a href="/help">Help Center</a>
-  <a href="/faq">FAQ</a>
-  <a href="/connect-us">Connect us</a>
+              <a href="/faq">FAQ</a>
+              <a href="/about">About Us</a>
           </div>
         </div>
 
@@ -33,7 +34,7 @@ export default function Footer() {
         <div className="footer-section">
           <h3>Services</h3>
           <a href="/submit">Complaint Submission</a>
-          <a href="/complaints">Complaint Tracking</a>
+          <a href="/complaints">My complaints</a>
           <a href="/dashboard">User Dashboard</a>
           <a href="/admin-dashboard">Admin Panel</a>
         </div>
@@ -48,14 +49,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* FOOTER BOTTOM */}
-      <div className="footer-bottom">
-        <div>© 2026 Voice4All. All rights reserved.</div>
-        <div className="footer-bottom-links">
-          <a href="/privacy">Privacy Policy</a>
-          <a href="/terms">Terms &amp; Conditions</a>
-          <a href="/contact">Contact</a>
-        </div>
+      <div className="footer-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/contact">Contact</a>
       </div>
     </footer>
   );

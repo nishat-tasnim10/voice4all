@@ -5,7 +5,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import ConnectUs from "./pages/ConnectUs";
+
 import Login from "./pages/Login";
 import Submit from "./pages/submit";
 import Dashboard from "./pages/Dashboard";
@@ -13,6 +13,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import Home from "./pages/Home";
 import Complaints from "./pages/Complaints";
 import Sidebar from "./pages/Sidebar";
+import AboutUs from "./pages/AboutUs";
 
 function AppContent() {
   const location = useLocation();
@@ -27,7 +28,7 @@ function AppContent() {
       <Routes>
         {/* Login */}
         <Route path="/" element={<Login />} />
-        <Route path="/connect-us" element={<ConnectUs />} />
+        <Route path="/connect-us" element={<AboutUs/>} />
 
         {/* Home */}
         <Route path="/home" element={<Home />} />

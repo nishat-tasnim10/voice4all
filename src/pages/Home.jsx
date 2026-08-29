@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import "./Home.css";
 
 function Home({ goHome, goComplaints }) {
+  const navigate = useNavigate();
+
   return (
     <div className="home-page">
 
@@ -11,8 +14,7 @@ function Home({ goHome, goComplaints }) {
         goComplaints={goComplaints}
       />
 
-
-      {/* MAIN */}
+      {/* MAIN CONTENT */}
       <main className="home-main">
 
         {/* HERO */}
@@ -44,7 +46,6 @@ function Home({ goHome, goComplaints }) {
           <p className="section-description">
             Select the category that best matches your civic issue.
           </p>
-
 
           <div className="category-grid">
 
@@ -153,15 +154,13 @@ function Home({ goHome, goComplaints }) {
             Choose what you want to do next.
           </p>
 
-
           <div className="quick-grid">
 
-            {/* SUBMIT */}
+            {/* SUBMIT COMPLAINT */}
             <button
+              type="button"
               className="quick-card"
-              onClick={() =>
-                alert("Submit Complaint page will be added next.")
-              }
+              onClick={() => navigate("/submit")}
             >
 
               <div className="quick-icon">
@@ -182,140 +181,11 @@ function Home({ goHome, goComplaints }) {
 
             </button>
 
-
-            {/* TRACK */}
-            <button
-              className="quick-card"
-              onClick={goComplaints}
-            >
-
-              <div className="quick-icon">
-                📋
-              </div>
-
-              <div>
-
-                <h3>
-                  Track Complaint
-                </h3>
-
-                <p>
-                  Check the current status of your submitted complaints.
-                </p>
-
-              </div>
-
-            </button>
-
-
-            {/* NOTICES */}
-            <button
-              className="quick-card"
-              onClick={() =>
-                alert("No new notices available.")
-              }
-            >
-
-              <div className="quick-icon">
-                📢
-              </div>
-
-              <div>
-
-                <h3>
-                  View Notices
-                </h3>
-
-                <p>
-                  See public notices and community announcements.
-                </p>
-
-              </div>
-
-            </button>
-
           </div>
 
         </section>
 
       </main>
-
-
-      {/* BOTTOM NAV */}
-      <nav className="bottom-nav">
-
-        {/* HOME */}
-        <button
-          className="nav-item active"
-          onClick={goHome}
-        >
-
-          <span className="nav-icon">
-            🏠
-          </span>
-
-          <span>
-            Home
-          </span>
-
-        </button>
-
-
-        {/* COMPLAINTS */}
-        <button
-          className="nav-item"
-          onClick={goComplaints}
-        >
-
-          <span className="nav-icon">
-            📋
-          </span>
-
-          <span>
-            Complaints
-          </span>
-
-        </button>
-
-
-        {/* SUBMIT */}
-        <button
-          className="nav-item"
-          onClick={() =>
-            alert("Submit Complaint page will be added next.")
-          }
-        >
-
-          <span className="nav-icon">
-            ➕
-          </span>
-
-          <span>
-            Submit
-          </span>
-
-        </button>
-
-
-        {/* PROFILE */}
-        <button
-          className="nav-item"
-          onClick={() =>
-            alert("Profile page will be added next.")
-          }
-        >
-
-          <span className="nav-icon">
-            👤
-          </span>
-
-          <span>
-            Profile
-          </span>
-
-        </button>
-
-      </nav>
 
     </div>
   );

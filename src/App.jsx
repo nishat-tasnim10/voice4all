@@ -1,35 +1,84 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
-import Login from "./pages/Login";
+import Home from "./pages/Home";
 import Submit from "./pages/submit";
 import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
-import Home from "./pages/Home";
 import Complaints from "./pages/Complaints";
+import ConnectUs from "./pages/ConnectUs";
+import HelpCenter from "./pages/HelpCenter";
+import Sidebar from "./pages/Sidebar";
 
 function App() {
   return (
     <BrowserRouter>
+
+      {/* COMMON SIDEBAR */}
+      <Sidebar />
+
       <Routes>
 
-        {/* Login */}
-        <Route path="/" element={<Login />} />
+        {/* OPEN HOME FIRST */}
+        <Route
+          path="/"
+          element={<Navigate to="/home" replace />}
+        />
 
-        {/* User pages */}
-        <Route path="/submit" element={<Submit />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        {/* HOME */}
+        <Route
+          path="/home"
+          element={<Home />}
+        />
 
-        {/* Admin */}
+        {/* SUBMIT COMPLAINT */}
+        <Route
+          path="/submit"
+          element={<Submit />}
+        />
+
+        {/* DASHBOARD */}
+        <Route
+          path="/dashboard"
+          element={<Dashboard />}
+        />
+
+        {/* COMPLAINTS */}
+        <Route
+          path="/complaints"
+          element={<Complaints />}
+        />
+
+        {/* HELP CENTER */}
+        <Route
+          path="/help-center"
+          element={<HelpCenter />}
+        />
+
+        {/* ADMIN DASHBOARD */}
         <Route
           path="/admin-dashboard"
           element={<AdminDashboard />}
         />
 
-        {/* Prachi's pages */}
-        <Route path="/home" element={<Home />} />
-        <Route path="/complaints" element={<Complaints />} />
+        {/* CONNECT US */}
+        <Route
+          path="/connect-us"
+          element={<ConnectUs />}
+        />
+
+        {/* UNKNOWN PAGE */}
+        <Route
+          path="*"
+          element={<Navigate to="/home" replace />}
+        />
 
       </Routes>
+
     </BrowserRouter>
   );
 }

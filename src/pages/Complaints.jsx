@@ -1,8 +1,9 @@
+
 import { useState } from "react";
-import Header from "./Header";
+import Footer from "./footer";
 import "./Complaints.css";
 
-function Complaints({ goHome, goComplaints }) {
+function Complaints() {
   const [filter, setFilter] = useState("All");
 
   const complaints = [
@@ -66,15 +67,10 @@ function Complaints({ goHome, goComplaints }) {
   return (
     <div className="complaints-page">
 
-      {/* HEADER */}
-      <Header
-        goHome={goHome}
-        goComplaints={goComplaints}
-      />
-
-      {/* MAIN */}
+      {/* MAIN CONTENT */}
       <main className="complaints-main">
 
+        {/* TITLE + FILTER */}
         <div className="complaints-title-row">
 
           <div>
@@ -90,9 +86,7 @@ function Complaints({ goHome, goComplaints }) {
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
           >
-            <option value="All">
-              All Complaints
-            </option>
+            <option value="All">All Complaints</option>
 
             <option value="In Progress">
               In Progress
@@ -117,11 +111,6 @@ function Complaints({ goHome, goComplaints }) {
             <div
               className="complaint-card"
               key={item.id}
-              onClick={() =>
-                alert(
-                  `${item.title}\nID: ${item.id}\nStatus: ${item.status}`
-                )
-              }
             >
 
               <div className="complaint-content">
@@ -158,6 +147,7 @@ function Complaints({ goHome, goComplaints }) {
 
               </div>
 
+              {/* CARD FOOTER */}
               <div className="complaint-footer">
 
                 <span>
@@ -176,6 +166,7 @@ function Complaints({ goHome, goComplaints }) {
 
         </div>
 
+        {/* NO RESULTS */}
         {filteredComplaints.length === 0 && (
           <div className="no-complaints">
             No complaints found.
@@ -184,49 +175,12 @@ function Complaints({ goHome, goComplaints }) {
 
       </main>
 
-      {/* BOTTOM NAV */}
-      <nav className="complaints-bottom-nav">
-
-        <button
-          className="complaints-nav-item"
-          onClick={goHome}
-        >
-          <span>🏠</span>
-          <small>Home</small>
-        </button>
-
-        <button
-          className="complaints-nav-item active"
-          onClick={goComplaints}
-        >
-          <span>📋</span>
-          <small>Complaints</small>
-        </button>
-
-        <button
-          className="complaints-nav-item"
-          onClick={() =>
-            alert("Submit Complaint page will be added next.")
-          }
-        >
-          <span>➕</span>
-          <small>Submit</small>
-        </button>
-
-        <button
-          className="complaints-nav-item"
-          onClick={() =>
-            alert("Profile page will be added next.")
-          }
-        >
-          <span>👤</span>
-          <small>Profile</small>
-        </button>
-
-      </nav>
+      {/* FOOTER */}
+      <Footer />
 
     </div>
   );
 }
 
 export default Complaints;
+

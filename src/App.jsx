@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import Home from "./pages/Home";
 import Complaints from "./pages/Complaints";
+<<<<<<< HEAD
 import Sidebar from "./pages/Sidebar";
 import AboutUs from "./pages/AboutUs";
 
@@ -20,6 +21,11 @@ function AppContent() {
 
   // Hide Sidebar only on Login page
   const isLoginPage = location.pathname === "/";
+=======
+import FAQ from "./pages/FAQ";
+
+
+>>>>>>> origin/Arpan
 
   return (
     <>
@@ -43,11 +49,20 @@ function AppContent() {
           element={<AdminDashboard />}
         />
 
+<<<<<<< HEAD
         {/* Complaints */}
         <Route
           path="/complaints"
           element={<Complaints />}
         />
+=======
+        {/* Prachi's pages */}
+        <Route path="/home" element={<Home />} />
+        <Route path="/complaints" element={<Complaints />} />
+
+        {/* FAQ - opened from Footer */} <Route path="/faq" element={<FAQ />} />
+
+>>>>>>> origin/Arpan
       </Routes>
     </>
   );

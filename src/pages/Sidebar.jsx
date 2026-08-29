@@ -54,7 +54,7 @@ function Sidebar() {
                     </Link>
 
                     <Link
-                        to="/view-details"
+                         to="/complaints"
                         onClick={handleNavigation}
                     >
                         View Details
@@ -75,7 +75,7 @@ function Sidebar() {
                     </Link>
 
                     <Link
-                        to="/"
+                      to="/"
                         onClick={handleNavigation}
                     >
                         Log Out

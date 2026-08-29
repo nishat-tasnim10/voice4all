@@ -1,7 +1,8 @@
+
 import "./Dashboard.css";
 import Header from "./Header";
 import Footer from "./footer";
-import Submit from "./submit";
+import Sidebar from "./Sidebar";
 
 function Dashboard() {
     return (
@@ -9,64 +10,17 @@ function Dashboard() {
             {/* HEADER */}
             <Header />
 
+            {/* SIDEBAR + MAIN CONTENT */}
             <div className="dashboard">
 
                 {/* SIDEBAR */}
-                <aside className="sidebar">
-
-                    <nav className="sidebar-nav">
-
-                        <button
-                            className="nav-btn active"
-                            onClick={() =>
-                                (window.location.href = "/dashboard")
-                            }
-                        >
-                            🏠 Dashboard
-                        </button>
-
-                        <button
-                            className="nav-btn"
-                            onClick={() =>
-                                (window.location.href = "/my-complaints")
-                            }
-                        >
-                            📋 My Complaints
-                        </button>
-
-                        <button
-                            className="nav-btn"
-                            onClick={() =>
-
-                                (window.location.href = "/my-complaints")
-
-                            }
-                        >
-                            ➕ Submit Complaint
-                        </button>
-
-                        <hr />
-
-                        <button
-                            className="nav-btn"
-                            onClick={() =>
-                                (window.location.href = "/")
-                            }
-                        >
-                            🚪 Logout
-                        </button>
-
-                    </nav>
-
-                </aside>
-
+                <Sidebar />
 
                 {/* MAIN CONTENT */}
                 <main className="main">
 
                     {/* WELCOME */}
                     <div className="dashboard-welcome">
-
                         <h1>
                             Welcome back! 👋
                         </h1>
@@ -74,15 +28,12 @@ function Dashboard() {
                         <p>
                             Track and manage your submitted complaints.
                         </p>
-
                     </div>
-
 
                     {/* STATISTICS */}
                     <section className="stats">
 
                         <div className="card total">
-
                             <div className="card-icon">
                                 📋
                             </div>
@@ -91,12 +42,9 @@ function Dashboard() {
                                 <h2>5</h2>
                                 <p>Total Complaints</p>
                             </div>
-
                         </div>
 
-
                         <div className="card pending">
-
                             <div className="card-icon">
                                 🕐
                             </div>
@@ -105,12 +53,9 @@ function Dashboard() {
                                 <h2>2</h2>
                                 <p>Pending</p>
                             </div>
-
                         </div>
 
-
                         <div className="card resolved">
-
                             <div className="card-icon">
                                 ✓
                             </div>
@@ -119,11 +64,9 @@ function Dashboard() {
                                 <h2>3</h2>
                                 <p>Resolved</p>
                             </div>
-
                         </div>
 
                     </section>
-
 
                     {/* RECENT COMPLAINTS */}
                     <section className="complaint-box">
@@ -144,13 +87,11 @@ function Dashboard() {
 
                         </div>
 
-
                         <div className="table-container">
 
                             <table>
 
                                 <thead>
-
                                     <tr>
                                         <th>Complaint</th>
                                         <th>Category</th>
@@ -158,12 +99,11 @@ function Dashboard() {
                                         <th>Date</th>
                                         <th>Action</th>
                                     </tr>
-
                                 </thead>
-
 
                                 <tbody>
 
+                                    {/* COMPLAINT 1 */}
                                     <tr>
 
                                         <td>
@@ -199,7 +139,7 @@ function Dashboard() {
 
                                     </tr>
 
-
+                                    {/* COMPLAINT 2 */}
                                     <tr>
 
                                         <td>
@@ -235,7 +175,7 @@ function Dashboard() {
 
                                     </tr>
 
-
+                                    {/* COMPLAINT 3 */}
                                     <tr>
 
                                         <td>
@@ -279,18 +219,16 @@ function Dashboard() {
 
                     </section>
 
-
                     {/* SUBMIT BUTTON */}
-                    {/* SUBMIT BUTTON */}
-<div className="submit-area">
+                    <div className="submit-area">
 
-    <button
-        id="submitBtn"
-        onClick={() =>
-            (window.location.href = "/submit")
-        }
-    >
-        ＋ Submit New Complaint
+                        <button
+                            id="submitBtn"
+                            onClick={() =>
+                                (window.location.href = "/submit")
+                            }
+                        >
+                            ＋ Submit New Complaint
                         </button>
 
                     </div>
@@ -298,7 +236,6 @@ function Dashboard() {
                 </main>
 
             </div>
-
 
             {/* FOOTER */}
             <Footer />
@@ -308,3 +245,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+

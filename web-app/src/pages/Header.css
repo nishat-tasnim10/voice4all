@@ -1,0 +1,229 @@
+
+.site-header {
+  width: 100%;
+  height: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 6%;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e2e8f0;
+
+  position: relative;
+  z-index: 100;
+
+  box-sizing: border-box;
+}
+
+
+
+
+.header-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  text-decoration: none;
+}
+
+
+
+
+.header-brand-icon {
+  width: 43px;
+  height: 43px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  background: #e6f7f5;
+
+  border: 1px solid #bfe7e3;
+}
+
+
+
+
+.header-brand-icon span {
+  width: 3px;
+
+  border-radius: 10px;
+
+  background: #0d9488;
+}
+
+.header-brand-icon span:nth-child(1) {
+  height: 9px;
+}
+
+.header-brand-icon span:nth-child(2) {
+  height: 17px;
+}
+
+.header-brand-icon span:nth-child(3) {
+  height: 28px;
+}
+
+.header-brand-icon span:nth-child(4) {
+  height: 17px;
+}
+
+.header-brand-icon span:nth-child(5) {
+  height: 9px;
+}
+
+
+/* Brand name */
+
+.header-brand-name {
+  font-size: 23px;
+  font-weight: 800;
+
+  color: #0b1f3a;
+}
+
+.header-brand-name span {
+  color: #0d9488;
+}
+
+
+/* Back / Forward buttons */
+
+.header-history-nav {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.header-history-btn {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #e6f7f5;
+
+  border: 1px solid #bfe7e3;
+
+  color: #0b1f3a;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.header-history-btn:hover {
+  background: #0d9488;
+  border-color: #0d9488;
+  color: #ffffff;
+}
+
+.header-history-btn:active {
+  transform: scale(0.94);
+}
+
+
+.header-nav {
+  display: flex;
+
+  align-items: center;
+
+  gap: 35px;
+}
+
+.header-nav a {
+  color: #0b1f3a;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  transition: 0.2s;
+}
+
+.header-nav a:hover {
+  color: #0d9488;
+}
+
+
+
+
+.header-profile {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 20px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #0b1f3a;
+
+  color: white;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.header-profile:hover {
+  background: #0d9488;
+}
+
+
+
+
+@media (max-width: 700px) {
+
+  .site-header {
+    padding: 0 20px;
+  }
+
+  .header-nav {
+    display: none;
+  }
+
+  .header-history-nav {
+    gap: 6px;
+  }
+
+  .header-history-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+
+  .header-brand-name {
+    font-size: 20px;
+  }
+}

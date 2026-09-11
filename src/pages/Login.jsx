@@ -3,16 +3,91 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
+import axiosInstance from "../utils/axiosInstance";
+
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
 
+  const [username, setUsername] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate("/submit");
-  };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // =========================
+  // SIGN UP
+  // =========================
+  if (isSignUp) {
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      // Create account
+      await axiosInstance.post("/users", {
+        username,
+        displayName,
+        password,
+      });
+
+      // Automatically login after signup
+      await axiosInstance.post("/auth/login", {
+        username,
+        password,
+      });
+
+      alert("Account created successfully!");
+
+    
+      navigate("/Home");
+
+    } catch (err) {
+      alert(
+        err.response?.data?.error ||
+          "Unable to create account"
+      );
+    } finally {
+      setLoading(false);
+    }
+
+    return;
+  }
+
+  // =========================
+  // LOGIN
+  // =========================
+  try {
+    setLoading(true);
+
+    await axiosInstance.post("/auth/login", {
+      username,
+      password,
+    });
+
+    alert("Login successful!");
+
+    navigate("/Home");
+
+  } catch (err) {
+    alert(
+      err.response?.data?.error ||
+        "Invalid username or password"
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="login-page">
@@ -55,7 +130,6 @@ export default function Login() {
               inclusive and simple for everyone.
             </p>
 
-        
             <div className="sound-wave">
               <span style={{ height: "20px" }}></span>
               <span style={{ height: "30px" }}></span>
@@ -119,34 +193,43 @@ export default function Login() {
 
             <form onSubmit={handleSubmit}>
 
-             
+              {/* USERNAME */}
+              <div className="input-group">
+
+                <label>Username</label>
+
+                <input
+                  type="text"
+                  placeholder="Enter your username"
+                  value={username}
+                  onChange={(e) =>
+                    setUsername(e.target.value)
+                  }
+                  required
+                />
+
+              </div>
+
+              {/* DISPLAY NAME - SIGN UP ONLY */}
               {isSignUp && (
                 <div className="input-group">
 
-                  <label>Full Name</label>
+                  <label>Display Name</label>
 
                   <input
                     type="text"
-                    placeholder="Enter your full name"
+                    placeholder="Enter your display name"
+                    value={displayName}
+                    onChange={(e) =>
+                      setDisplayName(e.target.value)
+                    }
                     required
                   />
 
                 </div>
               )}
 
-             
-              <div className="input-group">
-
-                <label>Email</label>
-
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  required
-                />
-
-              </div>
-
+              {/* PASSWORD */}
               <div className="input-group">
 
                 <label>Password</label>
@@ -154,8 +237,16 @@ export default function Login() {
                 <div className="password-wrapper">
 
                   <input
-                    type={showPassword ? "text" : "password"}
+                    type={
+                      showPassword
+                        ? "text"
+                        : "password"
+                    }
                     placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) =>
+                      setPassword(e.target.value)
+                    }
                     required
                   />
 
@@ -173,7 +264,7 @@ export default function Login() {
 
               </div>
 
-              {/* CONFIRM PASSWORD FOR SIGN UP */}
+              {/* CONFIRM PASSWORD */}
               {isSignUp && (
                 <div className="input-group">
 
@@ -182,13 +273,17 @@ export default function Login() {
                   <input
                     type="password"
                     placeholder="Confirm your password"
+                    value={confirmPassword}
+                    onChange={(e) =>
+                      setConfirmPassword(e.target.value)
+                    }
                     required
                   />
 
                 </div>
               )}
 
-             
+              {/* LOGIN OPTIONS */}
               {!isSignUp && (
                 <div className="options">
 
@@ -204,12 +299,17 @@ export default function Login() {
                 </div>
               )}
 
-           
+              {/* SUBMIT */}
               <button
                 type="submit"
                 className="sign-in-button"
+                disabled={loading}
               >
-                {isSignUp ? "Sign Up" : "Login"}
+                {loading
+                  ? "Please wait..."
+                  : isSignUp
+                    ? "Sign Up"
+                    : "Login"}
               </button>
 
             </form>
@@ -224,11 +324,16 @@ export default function Login() {
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
+
                   setIsSignUp(!isSignUp);
                   setShowPassword(false);
+                  setPassword("");
+                  setConfirmPassword("");
                 }}
               >
-                {isSignUp ? " Login" : " Create account"}
+                {isSignUp
+                  ? " Login"
+                  : " Create account"}
               </a>
 
             </p>
@@ -242,3 +347,4 @@ export default function Login() {
     </div>
   );
 }
+

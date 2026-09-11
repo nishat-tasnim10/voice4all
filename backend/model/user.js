@@ -1,3 +1,4 @@
+
 import { Schema, model } from "mongoose";
 
 const userSchema = new Schema({
@@ -6,7 +7,13 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
-  displayName: Schema.Types.String,
+
+  email: {
+    type: Schema.Types.String,
+    required: true,
+   
+  },
+
   password: {
     type: Schema.Types.String,
     required: true,
@@ -14,4 +21,6 @@ const userSchema = new Schema({
 });
 
 const User = model("User", userSchema);
+
 export default User;
+

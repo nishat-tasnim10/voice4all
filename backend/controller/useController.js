@@ -24,13 +24,13 @@ export const getProfile = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-  const { username, displayName, password } = req.body;
+  const { username, emalil, password } = req.body;
 
   const hashedPassword = await hashPassword(password);
 
   const newUser = new User({
     username,
-    displayName,
+    email,
     password: hashedPassword,
   });
 
@@ -48,7 +48,7 @@ export const createUser = async (req, res) => {
 };
 
 export const updatedUser = async (req, res) => {
-  const { displayName, username, password } = req.body;
+  const { email, username, password } = req.body;
   const { id } = req.params;
 
   const hashedPassword = await hashPassword(password);
@@ -62,7 +62,7 @@ export const updatedUser = async (req, res) => {
 
     const updatedUser = await User.findOneAndUpdate(
       { _id: id },
-      { username, displayName, password: hashedPassword },
+      { username, email, password: hashedPassword },
       {
         new: true,
       },

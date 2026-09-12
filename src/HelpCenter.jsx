@@ -13,12 +13,7 @@ function HelpCenter() {
       description:
         "Learn how to submit a new civic complaint.",
     },
-    {
-      icon: "🎤",
-      title: "Voice Complaint",
-      description:
-        "Learn how to submit a complaint using your voice.",
-    },
+   
     {
       icon: "📍",
       title: "Track Complaint",
@@ -31,12 +26,7 @@ function HelpCenter() {
       description:
         "Get help with your account and profile.",
     },
-    {
-      icon: "⚙️",
-      title: "Technical Issues",
-      description:
-        "Find solutions to common technical problems.",
-    },
+ 
     {
       icon: "📞",
       title: "Contact Support",

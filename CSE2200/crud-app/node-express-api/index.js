@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import "dotenv/config";
 import cors from "cors";
 import submitRoutes from "./routes/submitRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -39,6 +40,7 @@ app.use("/api/users", userRoutes);
 
 app.use("/api/auth", authRouter);
 app.use("/api/submit", submitRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);

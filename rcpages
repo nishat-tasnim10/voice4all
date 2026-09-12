@@ -1,0 +1,9 @@
+M	src/pages/AdminDashboard.css
+M	src/pages/AdminDashboard.jsx
+M	src/pages/Dashboard.css
+M	src/pages/Dashboard.jsx
+A	src/pages/Header.css
+A	src/pages/Header.jsx
+A	src/pages/footer.css
+A	src/pages/footer.jsx
+M	vite.config.js

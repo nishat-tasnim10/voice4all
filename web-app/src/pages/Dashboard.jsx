@@ -1,10 +1,61 @@
-
+import { useEffect, useState } from "react";
 import "./Dashboard.css";
 import Header from "./Header";
 import Footer from "./footer";
 import Sidebar from "./Sidebar";
 
+import axiosInstance from "../utils/axiosInstance";
+
 function Dashboard() {
+    const [dashboardData, setDashboardData] = useState({
+        totalComplaints: 0,
+        pendingComplaints: 0,
+        resolvedComplaints: 0,
+        recentComplaints: [],
+    });
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchDashboardData = async () => {
+            try {
+                const response = await axiosInstance.get("/dashboard");
+
+                setDashboardData(response.data);
+            } catch (error) {
+                console.error("Dashboard Error:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchDashboardData();
+    }, []);
+
+    const getStatusClass = (status) => {
+        if (status === "pending") {
+            return "pending-status";
+        }
+
+        if (status === "resolved") {
+            return "resolved-status";
+        }
+
+        return "progress-status";
+    };
+
+    const getStatusText = (status) => {
+        if (status === "pending") {
+            return "Pending";
+        }
+
+        if (status === "resolved") {
+            return "Resolved";
+        }
+
+        return "In Progress";
+    };
+
     return (
         <>
             {/* HEADER */}
@@ -39,7 +90,12 @@ function Dashboard() {
                             </div>
 
                             <div>
-                                <h2>5</h2>
+                                <h2>
+                                    {loading
+                                        ? "..."
+                                        : dashboardData.totalComplaints}
+                                </h2>
+
                                 <p>Total Complaints</p>
                             </div>
                         </div>
@@ -50,7 +106,12 @@ function Dashboard() {
                             </div>
 
                             <div>
-                                <h2>2</h2>
+                                <h2>
+                                    {loading
+                                        ? "..."
+                                        : dashboardData.pendingComplaints}
+                                </h2>
+
                                 <p>Pending</p>
                             </div>
                         </div>
@@ -61,7 +122,12 @@ function Dashboard() {
                             </div>
 
                             <div>
-                                <h2>3</h2>
+                                <h2>
+                                    {loading
+                                        ? "..."
+                                        : dashboardData.resolvedComplaints}
+                                </h2>
+
                                 <p>Resolved</p>
                             </div>
                         </div>
@@ -103,113 +169,65 @@ function Dashboard() {
 
                                 <tbody>
 
-                                    {/* COMPLAINT 1 */}
-                                    <tr>
+                                    {loading ? (
+                                        <tr>
+                                            <td colSpan="5">
+                                                Loading complaints...
+                                            </td>
+                                        </tr>
+                                    ) : dashboardData.recentComplaints.length === 0 ? (
+                                        <tr>
+                                            <td colSpan="5">
+                                                No complaints found.
+                                            </td>
+                                        </tr>
+                                    ) : (
+                                        dashboardData.recentComplaints.map((complaint) => (
+                                            <tr key={complaint._id}>
 
-                                        <td>
-                                            Road damage near school
-                                        </td>
+                                                <td>
+                                                    {complaint.subject}
+                                                </td>
 
-                                        <td>
-                                            <span className="category road">
-                                                Road
-                                            </span>
-                                        </td>
+                                                <td>
+                                                    <span className="category road">
+                                                        {complaint.department}
+                                                    </span>
+                                                </td>
 
-                                        <td>
-                                            <span className="status pending-status">
-                                                Pending
-                                            </span>
-                                        </td>
+                                                <td>
+                                                    <span
+                                                        className={`status ${getStatusClass(
+                                                            complaint.status
+                                                        )}`}
+                                                    >
+                                                        {getStatusText(
+                                                            complaint.status
+                                                        )}
+                                                    </span>
+                                                </td>
 
-                                        <td>
-                                            Aug 10
-                                        </td>
+                                                <td>
+                                                    {new Date(
+                                                        complaint.createdAt
+                                                    ).toLocaleDateString()}
+                                                </td>
 
-                                        <td>
-                                            <button
-                                                className="view-btn"
-                                                onClick={() =>
-                                                    (window.location.href = "/my-complaints")
-                                                }
-                                            >
-                                                View
-                                            </button>
-                                        </td>
+                                                <td>
+                                                    <button
+                                                        className="view-btn"
+                                                        onClick={() =>
+                                                            (window.location.href =
+                                                                "/my-complaints")
+                                                        }
+                                                    >
+                                                        View
+                                                    </button>
+                                                </td>
 
-                                    </tr>
-
-                                    {/* COMPLAINT 2 */}
-                                    <tr>
-
-                                        <td>
-                                            Water leakage
-                                        </td>
-
-                                        <td>
-                                            <span className="category water">
-                                                Water
-                                            </span>
-                                        </td>
-
-                                        <td>
-                                            <span className="status progress-status">
-                                                In Progress
-                                            </span>
-                                        </td>
-
-                                        <td>
-                                            Aug 8
-                                        </td>
-
-                                        <td>
-                                            <button
-                                                className="view-btn"
-                                                onClick={() =>
-                                                    (window.location.href = "/my-complaints")
-                                                }
-                                            >
-                                                View
-                                            </button>
-                                        </td>
-
-                                    </tr>
-
-                                    {/* COMPLAINT 3 */}
-                                    <tr>
-
-                                        <td>
-                                            Garbage collection
-                                        </td>
-
-                                        <td>
-                                            <span className="category sanitation">
-                                                Sanitation
-                                            </span>
-                                        </td>
-
-                                        <td>
-                                            <span className="status resolved-status">
-                                                Resolved
-                                            </span>
-                                        </td>
-
-                                        <td>
-                                            Aug 2
-                                        </td>
-
-                                        <td>
-                                            <button
-                                                className="view-btn"
-                                                onClick={() =>
-                                                    (window.location.href = "/my-complaints")
-                                                }
-                                            >
-                                                View
-                                            </button>
-                                        </td>
-
-                                    </tr>
+                                            </tr>
+                                        ))
+                                    )}
 
                                 </tbody>
 
@@ -245,4 +263,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-

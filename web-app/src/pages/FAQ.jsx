@@ -1,6 +1,8 @@
 
 import { useState } from "react";
 import "./FAQ.css";
+import Header from "./Header";
+import Footer from "./footer";
 
 const faqData = [
   {
@@ -86,122 +88,198 @@ function FAQ() {
   let questionIndex = 0;
 
   return (
-    <div className="faq-page">
-      {/* Hero Section */}
-      <section className="faq-hero">
-        <div className="faq-hero-content">
-          <span className="faq-label">HELP CENTER</span>
+    <>
+      {/* HEADER */}
+      <Header />
 
-          <h1>Frequently Asked Questions</h1>
+      {/* FAQ PAGE */}
+      <div className="faq-page">
 
-          <p>
-            Find answers to common questions about reporting and tracking
-            community issues through Voice4All.
-          </p>
+        {/* HERO SECTION */}
+        <section className="faq-hero">
+          <div className="faq-hero-content">
 
-          {/* Search */}
-          <div className="faq-search">
-            <span className="search-icon">⌕</span>
+            <span className="faq-label">
+              HELP CENTER
+            </span>
 
-            <input
-              type="text"
-              placeholder="Search your question..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+            <h1>
+              Frequently Asked Questions
+            </h1>
+
+            <p>
+              Find answers to common questions about reporting and tracking
+              community issues through Voice4All.
+            </p>
+
+            {/* SEARCH */}
+            <div className="faq-search">
+              <span className="search-icon">
+                ⌕
+              </span>
+
+              <input
+                type="text"
+                placeholder="Search your question..."
+                value={searchTerm}
+                onChange={(e) =>
+                  setSearchTerm(e.target.value)
+                }
+              />
+            </div>
+
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* FAQ Section */}
-      <main className="faq-container">
-        {faqData.map((section) => {
-          const filteredQuestions = section.questions.filter((item) =>
-            `${item.question} ${item.answer}`
-              .toLowerCase()
-              .includes(searchTerm.toLowerCase())
-          );
+        {/* FAQ SECTION */}
+        <main className="faq-container">
 
-          if (filteredQuestions.length === 0) return null;
-
-          return (
-            <section className="faq-category" key={section.category}>
-              <div className="category-title">
-                <span></span>
-                <h2>{section.category}</h2>
-              </div>
-
-              <div className="faq-list">
-                {filteredQuestions.map((item) => {
-                  const currentIndex = questionIndex++;
-
-                  return (
-                    <div
-                      className={`faq-item ${
-                        openIndex === currentIndex ? "active" : ""
-                      }`}
-                      key={item.question}
-                    >
-                      <button
-                        className="faq-question"
-                        onClick={() => toggleFAQ(currentIndex)}
-                      >
-                        <span>{item.question}</span>
-
-                        <span className="faq-icon">
-                          {openIndex === currentIndex ? "−" : "+"}
-                        </span>
-                      </button>
-
-                      <div
-                        className={`faq-answer ${
-                          openIndex === currentIndex ? "show" : ""
-                        }`}
-                      >
-                        <p>{item.answer}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-          );
-        })}
-
-        {/* No Results */}
-        {searchTerm &&
-          !faqData.some((section) =>
-            section.questions.some((item) =>
+          {faqData.map((section) => {
+            const filteredQuestions = section.questions.filter((item) =>
               `${item.question} ${item.answer}`
                 .toLowerCase()
                 .includes(searchTerm.toLowerCase())
-            )
-          ) && (
-            <div className="no-results">
-              <div className="no-results-icon">?</div>
-              <h3>No questions found</h3>
-              <p>Try searching with different keywords.</p>
+            );
+
+            if (filteredQuestions.length === 0) {
+              return null;
+            }
+
+            return (
+              <section
+                className="faq-category"
+                key={section.category}
+              >
+                <div className="category-title">
+
+                  <span></span>
+
+                  <h2>
+                    {section.category}
+                  </h2>
+
+                </div>
+
+                <div className="faq-list">
+
+                  {filteredQuestions.map((item) => {
+                    const currentIndex = questionIndex++;
+
+                    return (
+                      <div
+                        className={`faq-item ${
+                          openIndex === currentIndex
+                            ? "active"
+                            : ""
+                        }`}
+                        key={item.question}
+                      >
+
+                        <button
+                          className="faq-question"
+                          onClick={() =>
+                            toggleFAQ(currentIndex)
+                          }
+                        >
+
+                          <span>
+                            {item.question}
+                          </span>
+
+                          <span className="faq-icon">
+                            {openIndex === currentIndex
+                              ? "−"
+                              : "+"}
+                          </span>
+
+                        </button>
+
+                        <div
+                          className={`faq-answer ${
+                            openIndex === currentIndex
+                              ? "show"
+                              : ""
+                          }`}
+                        >
+
+                          <p>
+                            {item.answer}
+                          </p>
+
+                        </div>
+
+                      </div>
+                    );
+                  })}
+
+                </div>
+              </section>
+            );
+          })}
+
+          {/* NO RESULTS */}
+          {searchTerm &&
+            !faqData.some((section) =>
+              section.questions.some((item) =>
+                `${item.question} ${item.answer}`
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
+              )
+            ) && (
+              <div className="no-results">
+
+                <div className="no-results-icon">
+                  ?
+                </div>
+
+                <h3>
+                  No questions found
+                </h3>
+
+                <p>
+                  Try searching with different keywords.
+                </p>
+
+              </div>
+            )}
+
+        </main>
+
+        {/* CONTACT CTA */}
+        <section className="faq-contact">
+
+          <div className="contact-content">
+
+            <div className="contact-icon">
+              ?
             </div>
-          )}
-      </main>
 
-      {/* Contact CTA */}
-      <section className="faq-contact">
-        <div className="contact-content">
-          <div className="contact-icon">?</div>
+            <div>
 
-          <div>
-            <h2>Still have questions?</h2>
-            <p>
-              Can't find the answer you're looking for? Our team is here to
-              help.
-            </p>
+              <h2>
+                Still have questions?
+              </h2>
+
+              <p>
+                Can't find the answer you're looking for? Our team is here to
+                help.
+              </p>
+
+            </div>
+
+            <button className="contact-button">
+              Contact Us
+            </button>
+
           </div>
 
-          <button className="contact-button">Contact Us</button>
-        </div>
-      </section>
-    </div>
+        </section>
+
+      </div>
+
+      {/* FOOTER */}
+      <Footer />
+    </>
   );
 }
 

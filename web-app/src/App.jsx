@@ -1,10 +1,11 @@
+
 import {
   BrowserRouter,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
-
+import HelpCenter from "./pages/HelpCenter";
 import Login from "./pages/Login";
 import Submit from "./pages/submit";
 import Dashboard from "./pages/Dashboard";
@@ -28,9 +29,7 @@ function AppContent() {
 
       <Routes>
         {/* Login */}
-          <Route path="/" element={<Login />} />  
-        
-     <Route path="/" element={<Home/>} /> 
+        <Route path="/" element={<Login />} />
 
         {/* Home */}
         <Route path="/home" element={<Home />} />
@@ -52,7 +51,10 @@ function AppContent() {
         <Route path="/about" element={<AboutUs />} />
 
         {/* FAQ */}
-        <Route path="/faq" element={<FAQ />} />
+<Route path="/faq" element={<FAQ />} />
+
+{/* Help Center */}
+<Route path="/help-center" element={<HelpCenter />} />
       </Routes>
     </>
   );
@@ -67,3 +69,4 @@ function App() {
 }
 
 export default App;
+

@@ -25,7 +25,7 @@ export default function Header() {
       {/* Navigation */}
       <nav className="header-nav">
 
-        <Link to="/">
+        <Link to="/Home">
           Home
         </Link>
 

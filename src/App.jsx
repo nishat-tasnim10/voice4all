@@ -2,83 +2,64 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Navigate,
+  useLocation,
 } from "react-router-dom";
 
-import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Submit from "./pages/submit";
 import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+import Home from "./pages/Home";
 import Complaints from "./pages/Complaints";
-import ConnectUs from "./pages/ConnectUs";
-import HelpCenter from "./pages/HelpCenter";
+
 import Sidebar from "./pages/Sidebar";
+import AboutUs from "./pages/AboutUs";
+import FAQ from "./pages/FAQ";
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+
+  // Hide Sidebar only on Login page
+  const isLoginPage = location.pathname === "/";
+
   return (
-    <BrowserRouter>
-
-      {/* COMMON SIDEBAR */}
-      <Sidebar />
+    <>
+      {!isLoginPage && <Sidebar />}
 
       <Routes>
+        {/* Login */}
+        <Route path="/" element={<Login />} />
 
-        {/* OPEN HOME FIRST */}
-        <Route
-          path="/"
-          element={<Navigate to="/home" replace />}
-        />
+        {/* Home */}
+        <Route path="/home" element={<Home />} />
 
-        {/* HOME */}
-        <Route
-          path="/home"
-          element={<Home />}
-        />
+        {/* User pages */}
+        <Route path="/submit" element={<Submit />} />
+        <Route path="/dashboard" element={<Dashboard />} />
 
-        {/* SUBMIT COMPLAINT */}
-        <Route
-          path="/submit"
-          element={<Submit />}
-        />
+        {/* Complaints */}
+        <Route path="/complaints" element={<Complaints />} />
 
-        {/* DASHBOARD */}
-        <Route
-          path="/dashboard"
-          element={<Dashboard />}
-        />
-
-        {/* COMPLAINTS */}
-        <Route
-          path="/complaints"
-          element={<Complaints />}
-        />
-
-        {/* HELP CENTER */}
-        <Route
-          path="/help-center"
-          element={<HelpCenter />}
-        />
-
-        {/* ADMIN DASHBOARD */}
+        {/* Admin */}
         <Route
           path="/admin-dashboard"
           element={<AdminDashboard />}
         />
 
-        {/* CONNECT US */}
-        <Route
-          path="/connect-us"
-          element={<ConnectUs />}
-        />
+        {/* About Us */}
+        <Route path="/about" element={<AboutUs />} />
 
-        {/* UNKNOWN PAGE */}
-        <Route
-          path="*"
-          element={<Navigate to="/home" replace />}
-        />
-
+        {/* FAQ */}
+        <Route path="/faq" element={<FAQ />} />
       </Routes>
+    </>
+  );
+}
 
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }

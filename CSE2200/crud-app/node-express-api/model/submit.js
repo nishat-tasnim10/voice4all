@@ -33,6 +33,12 @@ const submitSchema = new mongoose.Schema({
     default: "pending",
   },
 
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+
 }, {
   timestamps: true,
 });

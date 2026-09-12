@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Header from "./Header";
 import Footer from "./footer";
@@ -22,18 +23,28 @@ export default function Submit() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/api/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          subject,
-          description,
-          department,
-          priority,
-        }),
-      });
+      const formData = new FormData();
+
+      formData.append("subject", subject);
+      formData.append("description", description);
+      formData.append("department", department);
+      formData.append("priority", priority);
+
+      if (image) {
+        formData.append("image", image);
+      }
+
+      const response = await fetch(
+        "http://localhost:4000/api/submit",
+        {
+          method: "POST",
+
+          // Sends the login cookie to the backend
+          credentials: "include",
+
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
@@ -73,7 +84,10 @@ export default function Submit() {
             </p>
           </div>
 
-          <form className="complaint-form" onSubmit={handleSubmit}>
+          <form
+            className="complaint-form"
+            onSubmit={handleSubmit}
+          >
 
             <div className="form-section">
               <label htmlFor="subject">
@@ -100,7 +114,9 @@ export default function Submit() {
                 placeholder="Explain what happened..."
                 rows="7"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) =>
+                  setDescription(e.target.value)
+                }
                 required
               ></textarea>
             </div>
@@ -113,20 +129,54 @@ export default function Submit() {
               <select
                 id="department"
                 value={department}
-                onChange={(e) => setDepartment(e.target.value)}
+                onChange={(e) =>
+                  setDepartment(e.target.value)
+                }
                 required
               >
-                <option value="">Select department</option>
-                <option value="roads">Roads & Infrastructure</option>
-                <option value="waste">Waste Management</option>
-                <option value="water">Water Supply</option>
-                <option value="drainage">Drainage & Sewerage</option>
-                <option value="lighting">Street Lighting</option>
-                <option value="health">Public Health</option>
-                <option value="parks">Parks & Environment</option>
-                <option value="traffic">Traffic & Transportation</option>
-                <option value="maintenance">Building & Maintenance</option>
-                <option value="other">Other</option>
+                <option value="">
+                  Select department
+                </option>
+
+                <option value="roads">
+                  Roads & Infrastructure
+                </option>
+
+                <option value="waste">
+                  Waste Management
+                </option>
+
+                <option value="water">
+                  Water Supply
+                </option>
+
+                <option value="drainage">
+                  Drainage & Sewerage
+                </option>
+
+                <option value="lighting">
+                  Street Lighting
+                </option>
+
+                <option value="health">
+                  Public Health
+                </option>
+
+                <option value="parks">
+                  Parks & Environment
+                </option>
+
+                <option value="traffic">
+                  Traffic & Transportation
+                </option>
+
+                <option value="maintenance">
+                  Building & Maintenance
+                </option>
+
+                <option value="other">
+                  Other
+                </option>
               </select>
             </div>
 
@@ -143,9 +193,12 @@ export default function Submit() {
                     name="priority"
                     value="Low"
                     checked={priority === "Low"}
-                    onChange={(e) => setPriority(e.target.value)}
+                    onChange={(e) =>
+                      setPriority(e.target.value)
+                    }
                     required
                   />
+
                   <span>Low</span>
                 </label>
 
@@ -155,8 +208,11 @@ export default function Submit() {
                     name="priority"
                     value="Medium"
                     checked={priority === "Medium"}
-                    onChange={(e) => setPriority(e.target.value)}
+                    onChange={(e) =>
+                      setPriority(e.target.value)
+                    }
                   />
+
                   <span>Medium</span>
                 </label>
 
@@ -166,8 +222,11 @@ export default function Submit() {
                     name="priority"
                     value="High"
                     checked={priority === "High"}
-                    onChange={(e) => setPriority(e.target.value)}
+                    onChange={(e) =>
+                      setPriority(e.target.value)
+                    }
                   />
+
                   <span>High</span>
                 </label>
 
@@ -181,9 +240,10 @@ export default function Submit() {
               </label>
 
               <label className="upload-box">
+
                 <input
                   type="file"
-                  accept="image/*"
+                  accept="image/png, image/jpeg, image/jpg"
                   onChange={handleImageChange}
                 />
 
@@ -198,6 +258,7 @@ export default function Submit() {
                 <small>
                   PNG, JPG or JPEG
                 </small>
+
               </label>
             </div>
 
@@ -217,3 +278,4 @@ export default function Submit() {
     </>
   );
 }
+

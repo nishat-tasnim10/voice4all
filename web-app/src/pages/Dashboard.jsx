@@ -145,7 +145,7 @@ function Dashboard() {
 
                             <span
                                 onClick={() =>
-                                    (window.location.href = "/my-complaints")
+                                    (window.location.href = "/complaints")
                                 }
                             >
                                 View all
@@ -218,7 +218,7 @@ function Dashboard() {
                                                         className="view-btn"
                                                         onClick={() =>
                                                             (window.location.href =
-                                                                "/my-complaints")
+                                                                "/complaints")
                                                         }
                                                     >
                                                         View

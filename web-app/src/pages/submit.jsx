@@ -149,6 +149,9 @@ export default function Submit() {
                 <option value="water">
                   Water Supply
                 </option>
+                <option value="Electricity">
+                  Electricity Problem
+                </option>
 
                 <option value="drainage">
                   Drainage & Sewerage

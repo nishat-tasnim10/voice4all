@@ -1,6 +1,8 @@
 
 import { useState } from "react";
+import Header from "./Header";
 import Sidebar from "./Sidebar";
+import Footer from "./footer";
 import "./HelpCenter.css";
 
 function HelpCenter() {
@@ -84,6 +86,9 @@ function HelpCenter() {
 
   return (
     <div className="help-center">
+
+      {/* ================= HEADER ================= */}
+      <Header />
 
       {/* ================= SIDEBAR ================= */}
       <Sidebar />
@@ -265,9 +270,11 @@ function HelpCenter() {
 
       </div>
 
+      {/* ================= FOOTER ================= */}
+      <Footer />
+
     </div>
   );
 }
 
 export default HelpCenter;
-

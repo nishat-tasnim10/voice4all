@@ -6,9 +6,13 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import "dotenv/config";
 import cors from "cors";
+
+import dns from "dns";
 import submitRoutes from "./routes/submitRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
 
+
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
 const app = express();
 const PORT = process.env.PORT || 4000;
 

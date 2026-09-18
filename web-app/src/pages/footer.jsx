@@ -16,7 +16,7 @@ export default function Footer() {
           </p>
           
           <div className="footer-socials">
-            <Link to="/help">Help Center</Link>
+           <Link to="/help-center">Help Center</Link>
             <Link to="/faq">FAQ</Link>
             <Link to="/about">About Us</Link>
           </div>

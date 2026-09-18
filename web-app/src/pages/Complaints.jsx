@@ -1,8 +1,10 @@
+
 import { useState } from "react";
 import Header from "./Header";
+import Footer from "./footer";
 import "./Complaints.css";
 
-function Complaints({ goHome, goComplaints }) {
+function Complaints() {
   const [filter, setFilter] = useState("All");
 
   const complaints = [
@@ -67,29 +69,35 @@ function Complaints({ goHome, goComplaints }) {
     <div className="complaints-page">
 
       {/* HEADER */}
-      <Header
-        goHome={goHome}
-        goComplaints={goComplaints}
-      />
 
-      {/* MAIN */}
+      <Header />
+
+
+      {/* MAIN CONTENT */}
+
       <main className="complaints-main">
+
+        {/* TITLE + FILTER */}
 
         <div className="complaints-title-row">
 
           <div>
+
             <h1>My Complaints</h1>
 
             <p>
               Track the status of your submitted civic issues.
             </p>
+
           </div>
+
 
           <select
             className="filter-select"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
           >
+
             <option value="All">
               All Complaints
             </option>
@@ -105,11 +113,14 @@ function Complaints({ goHome, goComplaints }) {
             <option value="Resolved">
               Resolved
             </option>
+
           </select>
 
         </div>
 
+
         {/* COMPLAINT CARDS */}
+
         <div className="complaints-grid">
 
           {filteredComplaints.map((item) => (
@@ -117,11 +128,6 @@ function Complaints({ goHome, goComplaints }) {
             <div
               className="complaint-card"
               key={item.id}
-              onClick={() =>
-                alert(
-                  `${item.title}\nID: ${item.id}\nStatus: ${item.status}`
-                )
-              }
             >
 
               <div className="complaint-content">
@@ -158,6 +164,9 @@ function Complaints({ goHome, goComplaints }) {
 
               </div>
 
+
+              {/* CARD FOOTER */}
+
               <div className="complaint-footer">
 
                 <span>
@@ -176,57 +185,27 @@ function Complaints({ goHome, goComplaints }) {
 
         </div>
 
+
+        {/* NO RESULTS */}
+
         {filteredComplaints.length === 0 && (
+
           <div className="no-complaints">
             No complaints found.
           </div>
+
         )}
 
       </main>
 
-      {/* BOTTOM NAV
-      <nav className="complaints-bottom-nav">
 
-        <button
-          className="complaints-nav-item"
-          onClick={goHome}
-        >
-          <span>🏠</span>
-          <small>Home</small>
-        </button>
+      {/* FOOTER */}
 
-        <button
-          className="complaints-nav-item active"
-          onClick={goComplaints}
-        >
-          <span>📋</span>
-          <small>Complaints</small>
-        </button>
-
-        <button
-          className="complaints-nav-item"
-          onClick={() =>
-            alert("Submit Complaint page will be added next.")
-          }
-        >
-          <span>➕</span>
-          <small>Submit</small>
-        </button>
-
-        <button
-          className="complaints-nav-item"
-          onClick={() =>
-            alert("Profile page will be added next.")
-          }
-        >
-          <span>👤</span>
-          <small>Profile</small>
-        </button>
-
-      </nav>  */}
+      <Footer />
 
     </div>
   );
 }
 
 export default Complaints;
+

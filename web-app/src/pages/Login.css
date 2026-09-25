@@ -578,3 +578,63 @@ body {
     padding: 40px 25px;
   }
 }
+/* =========================
+   LOGIN AS
+========================= */
+
+.login-as {
+  margin-bottom: 30px;
+}
+
+.login-as > label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #0b1f3a;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.role-buttons {
+  display: flex;
+
+  gap: 10px;
+}
+
+.role-buttons button {
+  flex: 1;
+
+  height: 45px;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.role-buttons button:hover {
+  border-color: #0d9488;
+
+  color: #0d9488;
+}
+
+.role-buttons button.active {
+  border-color: #0d9488;
+
+  background: #e6f7f5;
+
+  color: #0d9488;
+}

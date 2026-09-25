@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
@@ -13,6 +12,9 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  // User or Admin
+  const [loginRole, setLoginRole] = useState("user");
 
   const [loading, setLoading] = useState(false);
 
@@ -34,6 +36,7 @@ export default function Login() {
         setLoading(true);
 
         // Create account
+        // New accounts are always normal users
         await axiosInstance.post("/users", {
           username,
           email,
@@ -44,6 +47,7 @@ export default function Login() {
         await axiosInstance.post("/auth/login", {
           username,
           password,
+          loginRole: "user",
         });
 
         alert("Account created successfully!");
@@ -68,14 +72,24 @@ export default function Login() {
     try {
       setLoading(true);
 
-      await axiosInstance.post("/auth/login", {
+      const response = await axiosInstance.post("/auth/login", {
         username,
         password,
+        loginRole,
       });
 
       alert("Login successful!");
 
-      navigate("/Home");
+      // Get actual role from backend
+      const role = response.data.role;
+      localStorage.setItem("role", role);
+
+      // Send user to the correct page
+      if (role === "admin") {
+        navigate("/admin-dashboard");
+      } else {
+        navigate("/Home");
+      }
 
     } catch (err) {
       alert(
@@ -96,6 +110,7 @@ export default function Login() {
         <section className="hero-section">
 
           <div className="brand">
+
             <div className="brand-icon">
               <span></span>
               <span></span>
@@ -107,6 +122,7 @@ export default function Login() {
             <div className="brand-name">
               Voice<span>4</span>All
             </div>
+
           </div>
 
           <div className="hero-content">
@@ -129,6 +145,7 @@ export default function Login() {
             </p>
 
             <div className="sound-wave">
+
               <span style={{ height: "20px" }}></span>
               <span style={{ height: "30px" }}></span>
               <span style={{ height: "45px" }}></span>
@@ -149,6 +166,7 @@ export default function Login() {
               <span style={{ height: "35px" }}></span>
               <span style={{ height: "55px" }}></span>
               <span style={{ height: "25px" }}></span>
+
             </div>
 
             <div className="features">
@@ -262,6 +280,47 @@ export default function Login() {
 
               </div>
 
+              {/* LOGIN AS */}
+              {!isSignUp && (
+                <div className="login-as">
+
+                  <label>Login as</label>
+
+                  <div className="role-buttons">
+
+                    <button
+                      type="button"
+                      className={
+                        loginRole === "user"
+                          ? "active"
+                          : ""
+                      }
+                      onClick={() =>
+                        setLoginRole("user")
+                      }
+                    >
+                      User
+                    </button>
+
+                    <button
+                      type="button"
+                      className={
+                        loginRole === "admin"
+                          ? "active"
+                          : ""
+                      }
+                      onClick={() =>
+                        setLoginRole("admin")
+                      }
+                    >
+                      Admin
+                    </button>
+
+                  </div>
+
+                </div>
+              )}
+
               {/* CONFIRM PASSWORD */}
               {isSignUp && (
                 <div className="input-group">
@@ -327,6 +386,7 @@ export default function Login() {
                   setShowPassword(false);
                   setPassword("");
                   setConfirmPassword("");
+                  setLoginRole("user");
                 }}
               >
                 {isSignUp
@@ -344,5 +404,4 @@ export default function Login() {
 
     </div>
   );
-}
-
+} 

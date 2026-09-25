@@ -32,6 +32,7 @@ export const createUser = async (req, res) => {
     username,
     email,
     password: hashedPassword,
+    role: "user",
   });
 
   try {
@@ -40,8 +41,13 @@ export const createUser = async (req, res) => {
     if (otherUser) {
       return res.status(400).json({ error: "Username already in use" });
     }
+
     const savedUser = await newUser.save();
-    return res.status(201).json({ message: "New user added successfully" });
+
+    return res.status(201).json({
+      message: "New user added successfully",
+    });
+
   } catch (err) {
     return res.status(400).json(err);
   }
@@ -62,13 +68,18 @@ export const updatedUser = async (req, res) => {
 
     const updatedUser = await User.findOneAndUpdate(
       { _id: id },
-      { username, displayName, password: hashedPassword },
+      {
+        username,
+        displayName,
+        password: hashedPassword,
+      },
       {
         new: true,
       },
     ).select("-__v");
 
     return res.status(200).json(updatedUser);
+
   } catch (err) {
     return res.status(400).json(err);
   }
@@ -79,7 +90,11 @@ export const deleteUser = async (req, res) => {
 
   try {
     await User.deleteOne({ _id: id });
-    return res.status(200).json({ message: "User deleted" });
+
+    return res.status(200).json({
+      message: "User deleted",
+    });
+
   } catch (err) {
     return res.status(400).json(err);
   }
@@ -88,7 +103,11 @@ export const deleteUser = async (req, res) => {
 export const deleteAllUsers = async (req, res) => {
   try {
     await User.deleteMany();
-    return res.status(200).json({ message: "All users deleted" });
+
+    return res.status(200).json({
+      message: "All users deleted",
+    });
+
   } catch (err) {
     return res.status(400).json(err);
   }

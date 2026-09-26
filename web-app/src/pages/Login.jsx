@@ -23,9 +23,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // =========================
     // SIGN UP
-    // =========================
     if (isSignUp) {
       if (password !== confirmPassword) {
         alert("Passwords do not match");
@@ -50,10 +48,13 @@ export default function Login() {
           loginRole: "user",
         });
 
+        // Save user role
+        localStorage.removeItem("role");
+        localStorage.setItem("role", "user");
+
         alert("Account created successfully!");
 
         navigate("/Home");
-
       } catch (err) {
         alert(
           err.response?.data?.error ||
@@ -66,9 +67,7 @@ export default function Login() {
       return;
     }
 
-    // =========================
     // LOGIN
-    // =========================
     try {
       setLoading(true);
 
@@ -82,6 +81,11 @@ export default function Login() {
 
       // Get actual role from backend
       const role = response.data.role;
+
+      // Remove any old role first
+      localStorage.removeItem("role");
+
+      // Save current user's role
       localStorage.setItem("role", role);
 
       // Send user to the correct page
@@ -90,7 +94,6 @@ export default function Login() {
       } else {
         navigate("/Home");
       }
-
     } catch (err) {
       alert(
         err.response?.data?.error ||
@@ -343,16 +346,6 @@ export default function Login() {
               {/* LOGIN OPTIONS */}
               {!isSignUp && (
                 <div className="options">
-
-                  <label>
-                    <input type="checkbox" />
-                    Remember me
-                  </label>
-
-                  <a href="#">
-                    Forgot password?
-                  </a>
-
                 </div>
               )}
 
@@ -404,4 +397,4 @@ export default function Login() {
 
     </div>
   );
-} 
+}

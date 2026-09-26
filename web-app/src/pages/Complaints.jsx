@@ -251,10 +251,10 @@ function Complaints() {
 
           <div>
 
-            <h1>My Complaints</h1>
+            <h1>All Complaints</h1>
 
             <p>
-              Track the status of your submitted civic issues.
+              Track the status of  submitted civic issues.
             </p>
 
           </div>

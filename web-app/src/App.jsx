@@ -6,6 +6,8 @@ import {
   useLocation,
 } from "react-router-dom";
 
+import { useEffect, useState } from "react";
+
 import HelpCenter from "./pages/HelpCenter";
 import HelpTopic from "./pages/HelpTopic";
 import Login from "./pages/Login";
@@ -44,15 +46,24 @@ function AdminRoute({ children }) {
 function AppContent() {
   const location = useLocation();
 
-  const role = localStorage.getItem("role");
+  const [role, setRole] = useState(
+    localStorage.getItem("role")
+  );
+
+  // Check role whenever the page/route changes
+  useEffect(() => {
+    setRole(localStorage.getItem("role"));
+  }, [location.pathname]);
 
   const isLoginPage = location.pathname === "/";
 
   return (
     <>
+      {/* USER SIDEBAR ONLY */}
       {!isLoginPage && role === "user" && <Sidebar />}
 
       <Routes>
+
         {/* Login */}
         <Route path="/" element={<Login />} />
 
@@ -83,7 +94,10 @@ function AppContent() {
         />
 
         {/* Complaints */}
-        <Route path="/complaints" element={<Complaints />} />
+        <Route
+          path="/complaints"
+          element={<Complaints />}
+        />
 
         {/* Admin Dashboard */}
         <Route
@@ -96,19 +110,29 @@ function AppContent() {
         />
 
         {/* About */}
-        <Route path="/about" element={<AboutUs />} />
+        <Route
+          path="/about"
+          element={<AboutUs />}
+        />
 
         {/* FAQ */}
-        <Route path="/faq" element={<FAQ />} />
+        <Route
+          path="/faq"
+          element={<FAQ />}
+        />
 
         {/* Help Center */}
-        <Route path="/help-center" element={<HelpCenter />} />
+        <Route
+          path="/help-center"
+          element={<HelpCenter />}
+        />
 
         {/* Help Topic */}
         <Route
           path="/help-center/:topicSlug"
           element={<HelpTopic />}
         />
+
       </Routes>
     </>
   );

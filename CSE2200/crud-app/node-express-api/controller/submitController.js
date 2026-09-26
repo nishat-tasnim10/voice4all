@@ -3,9 +3,9 @@ import Submit from "../model/submit.js";
 import cloudinary from "../config/cloudinary.js";
 
 
-// =========================
+
 // CREATE COMPLAINT
-// =========================
+
 
 export const createSubmit = async (req, res) => {
 
@@ -84,9 +84,8 @@ export const createSubmit = async (req, res) => {
 };
 
 
-// =========================
 // GET COMPLAINTS
-// =========================
+
 
 export const getComplaints = async (req, res) => {
 
@@ -95,9 +94,9 @@ export const getComplaints = async (req, res) => {
     let complaints;
 
 
-    // =========================
+    
     // ADMIN
-    // =========================
+   
 
     if (req.user.role === "admin") {
 
@@ -110,9 +109,9 @@ export const getComplaints = async (req, res) => {
     }
 
 
-    // =========================
-    // NORMAL USER
-    // =========================
+    
+    // USER
+  
 
     else {
 

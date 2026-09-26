@@ -21,6 +21,7 @@ const checkToken = (req, res, next) => {
 
         secure: true,
 
+
         sameSite: "none",
 
         path: "/",

@@ -1,7 +1,7 @@
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "./Header";
-import Sidebar from "./Sidebar";
 import Footer from "./footer";
 import "./HelpCenter.css";
 
@@ -13,31 +13,25 @@ function HelpCenter() {
     {
       icon: "📢",
       title: "Submit a Complaint",
+      slug: "submit-complaint",
       description: "Learn how to submit a new complaint.",
-    },
-    {
-      icon: "🎤",
-      title: "Voice Complaint",
-      description: "Learn how to submit a complaint using voice.",
     },
     {
       icon: "📍",
       title: "Track Complaint",
+      slug: "track-complaint",
       description: "Check the status of your complaint.",
     },
     {
       icon: "👤",
       title: "Account Help",
+      slug: "account-help",
       description: "Get help with your account and profile.",
-    },
-    {
-      icon: "⚙️",
-      title: "Technical Issues",
-      description: "Solve common technical problems.",
     },
     {
       icon: "📞",
       title: "Contact Support",
+      slug: "contact-support",
       description: "Get help from our support team.",
     },
   ];
@@ -47,21 +41,6 @@ function HelpCenter() {
       question: "How do I submit a complaint?",
       answer:
         "Go to the Submit Complaint page, enter your complaint details, and click Submit.",
-    },
-    {
-      question: "How do I use voice input?",
-      answer:
-        "Open the voice complaint feature, allow microphone permission, and speak clearly.",
-    },
-    {
-      question: "How can I track my complaint?",
-      answer:
-        "Go to the Dashboard or Complaints page to check your complaint status.",
-    },
-    {
-      question: "What should I do if voice input is not working?",
-      answer:
-        "Check your browser microphone permission and make sure your microphone is connected.",
     },
     {
       question: "How can I contact support?",
@@ -87,11 +66,7 @@ function HelpCenter() {
   return (
     <div className="help-center">
 
-      {/* ================= HEADER ================= */}
       <Header />
-
-      {/* ================= SIDEBAR ================= */}
-      <Sidebar />
 
       {/* ================= MAIN PAGE ================= */}
       <div className="help-main">
@@ -153,14 +128,9 @@ function HelpCenter() {
                     {topic.description}
                   </p>
 
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setSearchTerm(topic.title)
-                    }
-                  >
+                  <Link to={`/help-center/${topic.slug}`}>
                     Learn More →
-                  </button>
+                  </Link>
 
                 </div>
 
@@ -253,16 +223,12 @@ function HelpCenter() {
 
             </div>
 
-            <button
-              type="button"
-              onClick={() =>
-                alert(
-                  "Contact Support feature will be added soon."
-                )
-              }
+            <Link
+              className="support-link"
+              to="/help-center/contact-support"
             >
               Contact Support
-            </button>
+            </Link>
 
           </section>
 
@@ -270,7 +236,6 @@ function HelpCenter() {
 
       </div>
 
-      {/* ================= FOOTER ================= */}
       <Footer />
 
     </div>
@@ -278,3 +243,4 @@ function HelpCenter() {
 }
 
 export default HelpCenter;
+

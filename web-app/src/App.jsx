@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import HelpCenter from "./pages/HelpCenter";
+import HelpTopic from "./pages/HelpTopic";
 import Login from "./pages/Login";
 import Submit from "./pages/submit";
 import Dashboard from "./pages/Dashboard";
@@ -43,28 +44,25 @@ function AdminRoute({ children }) {
 function AppContent() {
   const location = useLocation();
 
-  // Get logged-in user's role
   const role = localStorage.getItem("role");
 
-  // Hide Sidebar on Login page
   const isLoginPage = location.pathname === "/";
 
   return (
     <>
-      {/* Sidebar only for normal users */}
       {!isLoginPage && role === "user" && <Sidebar />}
 
       <Routes>
         {/* Login */}
         <Route path="/" element={<Login />} />
 
-        {/* Home - Both User and Admin */}
+        {/* Home */}
         <Route path="/Home" element={<Home />} />
 
-        {/* Profile - Both User and Admin */}
+        {/* Profile */}
         <Route path="/profile" element={<Profile />} />
 
-        {/* User Dashboard - USER ONLY */}
+        {/* User Dashboard */}
         <Route
           path="/dashboard"
           element={
@@ -74,7 +72,7 @@ function AppContent() {
           }
         />
 
-        {/* Submit Complaint - USER ONLY */}
+        {/* Submit Complaint */}
         <Route
           path="/submit"
           element={
@@ -84,10 +82,10 @@ function AppContent() {
           }
         />
 
-        {/* Complaints - Both User and Admin */}
+        {/* Complaints */}
         <Route path="/complaints" element={<Complaints />} />
 
-        {/* Admin Dashboard - ADMIN ONLY */}
+        {/* Admin Dashboard */}
         <Route
           path="/admin-dashboard"
           element={
@@ -97,14 +95,20 @@ function AppContent() {
           }
         />
 
-        {/* About Us - Both */}
+        {/* About */}
         <Route path="/about" element={<AboutUs />} />
 
-        {/* FAQ - Both */}
+        {/* FAQ */}
         <Route path="/faq" element={<FAQ />} />
 
-        {/* Help Center - Both */}
+        {/* Help Center */}
         <Route path="/help-center" element={<HelpCenter />} />
+
+        {/* Help Topic */}
+        <Route
+          path="/help-center/:topicSlug"
+          element={<HelpTopic />}
+        />
       </Routes>
     </>
   );

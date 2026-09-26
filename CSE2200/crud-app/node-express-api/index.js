@@ -10,6 +10,7 @@ import cors from "cors";
 import dns from "dns";
 import submitRoutes from "./routes/submitRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
+import adminDashboardRoutes from "./routes/adminDashboardRoutes.js";
 
 
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
@@ -45,6 +46,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/auth", authRouter);
 app.use("/api/submit", submitRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/admin-dashboard", adminDashboardRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);

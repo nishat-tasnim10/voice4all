@@ -17,12 +17,6 @@ function HelpCenter() {
       description: "Learn how to submit a new complaint.",
     },
     {
-      icon: "📍",
-      title: "Track Complaint",
-      slug: "track-complaint",
-      description: "Check the status of your complaint.",
-    },
-    {
       icon: "👤",
       title: "Account Help",
       slug: "account-help",

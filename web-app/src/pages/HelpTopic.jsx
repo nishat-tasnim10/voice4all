@@ -16,18 +16,6 @@ const guides = {
     ],
     action: { label: "Go to Submit Complaint", to: "/submit" },
   },
-  "track-complaint": {
-    icon: "📍",
-    title: "Track a Complaint",
-    intro: "Check the latest status of a report you have already submitted.",
-    steps: [
-      "Open View Complaints to see your submitted reports, or open your Dashboard for a summary.",
-      "Find the complaint using its subject or reference number.",
-      "Read the status shown on the complaint. Pending means it is awaiting action; In Progress means it is being handled; Resolved means it has been marked complete.",
-      "If you need help with a specific report, include its reference number when contacting support.",
-    ],
-    action: { label: "View Complaints", to: "/complaints" },
-  },
   "account-help": {
     icon: "👤",
     title: "Account Help",
@@ -43,14 +31,13 @@ const guides = {
   "contact-support": {
     icon: "📞",
     title: "Contact Support",
-    intro: "Send the support team enough detail to understand what you need help with.",
+    intro: "Prepare the details the support team needs to understand your issue.",
     steps: [
-      "Email support@voice4all.com from an address where the team can reply.",
-      "Use a brief subject that describes the problem, such as account access or complaint status.",
-      "Include the page you were using, what you expected to happen, and any complaint reference number that applies.",
+      "Describe the issue clearly and mention which page or feature you were using.",
+      "Explain what you expected to happen and what happened instead.",
+      "Include a complaint reference number if your question is about a submitted report.",
       "Do not include your password or other sensitive sign-in details.",
     ],
-    action: { label: "Email Support", to: "mailto:support@voice4all.com" },
   },
 };
 
@@ -83,11 +70,7 @@ function HelpTopic() {
               ))}
             </ol>
 
-            {guide.action.to.startsWith("mailto:") ? (
-              <a className="help-guide-action" href={guide.action.to}>
-                {guide.action.label}
-              </a>
-            ) : (
+            {guide.action && (
               <Link className="help-guide-action" to={guide.action.to}>
                 {guide.action.label}
               </Link>

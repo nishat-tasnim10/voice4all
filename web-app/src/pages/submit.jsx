@@ -1,4 +1,4 @@
-
+import CarbonFootprint from "../components/CarbonFootprint";
 import { useState } from "react";
 import Header from "./Header";
 import Footer from "./footer";
@@ -149,6 +149,7 @@ export default function Submit() {
                 <option value="water">
                   Water Supply
                 </option>
+
                 <option value="Electricity">
                   Electricity Problem
                 </option>
@@ -274,6 +275,8 @@ export default function Submit() {
 
           </form>
 
+          <CarbonFootprint />
+
         </section>
       </main>
 
@@ -281,4 +284,3 @@ export default function Submit() {
     </>
   );
 }
-

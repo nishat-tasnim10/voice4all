@@ -1,3 +1,4 @@
+
 import { Link, useParams } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./footer";
@@ -7,7 +8,8 @@ const guides = {
   "submit-complaint": {
     icon: "📢",
     title: "Submit a Complaint",
-    intro: "Share a clear report so the right team can understand and review the issue.",
+    intro:
+      "Share a clear report so the right team can understand and review the issue.",
     steps: [
       "Open the Submit Complaint page. Sign in first if the site asks you to.",
       "Add a short subject and describe what happened, including where and when you noticed it.",
@@ -16,22 +18,26 @@ const guides = {
     ],
     action: { label: "Go to Submit Complaint", to: "/submit" },
   },
+
   "account-help": {
     icon: "👤",
     title: "Account Help",
-    intro: "Use your account to sign in and access your complaint dashboard.",
+    intro:
+      "Use your account to sign in and access your complaint dashboard.",
     steps: [
       "Open the Log In page and enter your username and password.",
       "To create an account, choose the sign-up option and complete the requested fields.",
       "After signing in, open Dashboard to review your account-related complaint information.",
       "If you cannot access your account, contact support with your username. Never send your password.",
     ],
-    action: { label: "Open Log In", to: "/login" },
+    action: { label: "Open Log In", to: "/" },
   },
+
   "contact-support": {
     icon: "📞",
     title: "Contact Support",
-    intro: "Prepare the details the support team needs to understand your issue.",
+    intro:
+      "Prepare the details the support team needs to understand your issue.",
     steps: [
       "Describe the issue clearly and mention which page or feature you were using.",
       "Explain what you expected to happen and what happened instead.",
@@ -59,11 +65,15 @@ function HelpTopic() {
             <div className="help-guide-icon" aria-hidden="true">
               {guide.icon}
             </div>
+
             <p className="help-guide-eyebrow">VOICE4ALL HELP GUIDE</p>
+
             <h1>{guide.title}</h1>
+
             <p className="help-guide-intro">{guide.intro}</p>
 
             <h2>What to do</h2>
+
             <ol className="help-guide-steps">
               {guide.steps.map((step) => (
                 <li key={step}>{step}</li>
@@ -79,8 +89,10 @@ function HelpTopic() {
         ) : (
           <section className="help-guide-content">
             <h1>Help topic not found</h1>
+
             <p className="help-guide-intro">
-              Choose a guide from the Help Center to find the instructions you need.
+              Choose a guide from the Help Center to find the instructions
+              you need.
             </p>
           </section>
         )}

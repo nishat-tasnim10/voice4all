@@ -1,0 +1,27 @@
+.carbon-footprint {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: #f0fdfa;
+  border: 1px solid #ccfbf1;
+  border-left: 3px solid #0d9488;
+  border-radius: 10px;
+  color: #0b1f3a;
+}
+
+.carbon-footprint h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0b1f3a;
+}
+
+.carbon-footprint p {
+  margin: 4px 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.carbon-footprint strong {
+  color: #0d9488;
+  font-weight: 600;
+}

@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
@@ -11,6 +12,7 @@ export default function Footer() {
     <footer className="site-footer">
 
       <div className="footer-container">
+
 
         {/* BRAND / ABOUT */}
         <div className="footer-section footer-about">
@@ -48,9 +50,12 @@ export default function Footer() {
 
           <h3>Quick Links</h3>
 
-          <Link to="/Home">
-            Home
-          </Link>
+          {/* USER ONLY */}
+          {!isAdmin && (
+            <Link to="/Home">
+              Home
+            </Link>
+          )}
 
           {/* USER ONLY */}
           {!isAdmin && (
@@ -60,7 +65,7 @@ export default function Footer() {
           )}
 
           <Link to="/complaints">
-            View Complaints
+            {isAdmin ? "All Complaints" : "View Complaints"}
           </Link>
 
           {/* USER ONLY */}
@@ -127,6 +132,7 @@ export default function Footer() {
           <p>🕒 Available 24/7</p>
 
         </div>
+
 
       </div>
 

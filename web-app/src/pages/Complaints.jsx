@@ -1,83 +1,251 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import Header from "./Header";
 import Footer from "./footer";
+
 import "./Complaints.css";
 
+import axiosInstance from "../utils/axiosInstance";
+
+
 function Complaints() {
+
   const [filter, setFilter] = useState("All");
 
-  const complaints = [
-    {
-      id: "#V4A-9821",
-      title: "Major Water Leak on Main St.",
-      description:
-        "Water is gushing from a broken pipe near the intersection, causing minor flooding on the sidewalk.",
-      date: "Oct 24, 2023",
-      status: "In Progress",
-      icon: "💧",
-      color: "blue",
-    },
-    {
-      id: "#V4A-9845",
-      title: "Missed Garbage Collection",
-      description:
-        "The entire block of Elm Street was missed during yesterday's scheduled sanitation pickup.",
-      date: "Oct 26, 2023",
-      status: "Pending",
-      icon: "🗑️",
-      color: "orange",
-    },
-    {
-      id: "#V4A-9871",
-      title: "Large Pothole Near School",
-      description:
-        "A large pothole near the school entrance is creating a hazard for vehicles and pedestrians.",
-      date: "Oct 28, 2023",
-      status: "In Progress",
-      icon: "🛣️",
-      color: "purple",
-    },
-    {
-      id: "#V4A-9892",
-      title: "Electricity Problem",
-      description:
-        "Several streetlights are not working and an electrical line appears damaged.",
-      date: "Oct 29, 2023",
-      status: "Pending",
-      icon: "⚡",
-      color: "red",
-    },
-    {
-      id: "#V4A-9904",
-      title: "Blocked Drainage",
-      description:
-        "A blocked roadside drain was causing wastewater and poor sanitation conditions.",
-      date: "Oct 30, 2023",
-      status: "Resolved",
-      icon: "🧹",
-      color: "green",
-    },
-  ];
+  const [complaints, setComplaints] = useState([]);
 
+  const [loading, setLoading] = useState(true);
+
+
+  // Get complaints from backend
+  useEffect(() => {
+
+    const getComplaints = async () => {
+
+      try {
+
+        const response = await axiosInstance.get("/submit");
+
+        setComplaints(response.data);
+
+      } catch (error) {
+
+        console.error("Failed to load complaints:", error);
+
+      } finally {
+
+        setLoading(false);
+
+      }
+
+    };
+
+
+    getComplaints();
+
+  }, []);
+
+
+  // Filter complaints
   const filteredComplaints =
     filter === "All"
       ? complaints
-      : complaints.filter((item) => item.status === filter);
+      : complaints.filter((item) => {
+
+          if (filter === "In Progress") {
+
+            return (
+              item.status === "in-progress" ||
+              item.status === "In Progress"
+            );
+
+          }
+
+          if (filter === "Pending") {
+
+            return (
+              item.status === "pending" ||
+              item.status === "Pending"
+            );
+
+          }
+
+          if (filter === "Resolved") {
+
+            return (
+              item.status === "resolved" ||
+              item.status === "Resolved"
+            );
+
+          }
+
+          if (filter === "Rejected") {
+
+            return (
+              item.status === "rejected" ||
+              item.status === "Rejected"
+            );
+
+          }
+
+          return item.status === filter;
+
+        });
+
+
+  // Convert backend status to display text
+  const getStatusText = (status) => {
+
+    if (status === "pending") {
+      return "Pending";
+    }
+
+    if (status === "in-progress") {
+      return "In Progress";
+    }
+
+    if (status === "resolved") {
+      return "Resolved";
+    }
+
+    if (status === "rejected") {
+      return "Rejected";
+    }
+
+    return status;
+
+  };
+
+
+  // Status CSS class
+  const getStatusClass = (status) => {
+
+    if (
+      status === "in-progress" ||
+      status === "In Progress"
+    ) {
+      return "progress";
+    }
+
+    if (
+      status === "pending" ||
+      status === "Pending"
+    ) {
+      return "pending";
+    }
+
+    if (
+      status === "resolved" ||
+      status === "Resolved"
+    ) {
+      return "resolved";
+    }
+
+    if (
+      status === "rejected" ||
+      status === "Rejected"
+    ) {
+      return "rejected";
+    }
+
+    return "pending";
+
+  };
+
+
+  // Department icon
+  const getIcon = (department) => {
+
+    switch (department) {
+
+      case "water":
+        return "💧";
+
+      case "waste":
+        return "🗑️";
+
+      case "roads":
+        return "🛣️";
+
+      case "electricity":
+        return "⚡";
+
+      case "drainage":
+        return "🧹";
+
+      case "lighting":
+        return "💡";
+
+      case "traffic":
+        return "🚦";
+
+      case "health":
+        return "🏥";
+
+      case "parks":
+        return "🌳";
+
+      default:
+        return "📢";
+
+    }
+
+  };
+
+
+  // Department color
+  const getColor = (department) => {
+
+    switch (department) {
+
+      case "water":
+        return "blue";
+
+      case "waste":
+        return "orange";
+
+      case "roads":
+        return "purple";
+
+      case "electricity":
+        return "red";
+
+      case "drainage":
+        return "green";
+
+      default:
+        return "blue";
+
+    }
+
+  };
+
+
+  // Format date
+  const getDate = (date) => {
+
+    if (!date) {
+      return "";
+    }
+
+    return new Date(date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+
+  };
+
 
   return (
-    <div className="complaints-page">
 
-      {/* HEADER */}
+    <div className="complaints-page">
 
       <Header />
 
 
-      {/* MAIN CONTENT */}
-
       <main className="complaints-main">
-
-        {/* TITLE + FILTER */}
 
         <div className="complaints-title-row">
 
@@ -114,98 +282,128 @@ function Complaints() {
               Resolved
             </option>
 
+            <option value="Rejected">
+              Rejected
+            </option>
+
           </select>
 
         </div>
 
 
-        {/* COMPLAINT CARDS */}
+        {/* Loading */}
 
-        <div className="complaints-grid">
-
-          {filteredComplaints.map((item) => (
-
-            <div
-              className="complaint-card"
-              key={item.id}
-            >
-
-              <div className="complaint-content">
-
-                <div className="complaint-top">
-
-                  <div
-                    className={`complaint-icon ${item.color}`}
-                  >
-                    {item.icon}
-                  </div>
-
-                  <span
-                    className={`status-badge ${
-                      item.status === "In Progress"
-                        ? "progress"
-                        : item.status === "Pending"
-                        ? "pending"
-                        : "resolved"
-                    }`}
-                  >
-                    {item.status}
-                  </span>
-
-                </div>
-
-                <h2>
-                  {item.title}
-                </h2>
-
-                <p>
-                  {item.description}
-                </p>
-
-              </div>
-
-
-              {/* CARD FOOTER */}
-
-              <div className="complaint-footer">
-
-                <span>
-                  📅 {item.date}
-                </span>
-
-                <span className="complaint-id">
-                  ID: {item.id}
-                </span>
-
-              </div>
-
-            </div>
-
-          ))}
-
-        </div>
-
-
-        {/* NO RESULTS */}
-
-        {filteredComplaints.length === 0 && (
+        {loading && (
 
           <div className="no-complaints">
-            No complaints found.
+
+            Loading complaints...
+
           </div>
 
         )}
 
+
+        {/* Complaints */}
+
+        {!loading && (
+
+          <div className="complaints-grid">
+
+            {filteredComplaints.map((item) => (
+
+              <div
+                className="complaint-card"
+                key={item._id}
+              >
+
+                <div className="complaint-content">
+
+                  <div className="complaint-top">
+
+                    <div
+                      className={`complaint-icon ${getColor(
+                        item.department
+                      )}`}
+                    >
+
+                      {getIcon(item.department)}
+
+                    </div>
+
+
+                    <span
+                      className={`status-badge ${getStatusClass(
+                        item.status
+                      )}`}
+                    >
+
+                      {getStatusText(item.status)}
+
+                    </span>
+
+                  </div>
+
+
+                  <h2>
+                    {item.subject}
+                  </h2>
+
+
+                  <p>
+                    {item.description}
+                  </p>
+
+                </div>
+
+
+                <div className="complaint-footer">
+
+                  <span>
+                    📅 {getDate(item.createdAt)}
+                  </span>
+
+
+                  <span className="complaint-id">
+
+                    ID: {item._id}
+
+                  </span>
+
+                </div>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        )}
+
+
+        {/* No complaints */}
+
+        {!loading &&
+          filteredComplaints.length === 0 && (
+
+            <div className="no-complaints">
+
+              No complaints found.
+
+            </div>
+
+          )}
+
       </main>
 
-
-      {/* FOOTER */}
 
       <Footer />
 
     </div>
+
   );
+
 }
 
-export default Complaints;
 
+export default Complaints;

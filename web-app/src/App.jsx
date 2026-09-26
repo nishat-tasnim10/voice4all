@@ -13,28 +13,24 @@ import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import Home from "./pages/Home";
 import Complaints from "./pages/Complaints";
-
+import Profile from "./pages/Profile";
 import Sidebar from "./pages/Sidebar";
 import AboutUs from "./pages/AboutUs";
 import FAQ from "./pages/FAQ";
 
-
 // USER ONLY
 function UserRoute({ children }) {
-
   const role = localStorage.getItem("role");
 
   if (role !== "user") {
-    return <Navigate to="/AdminDashboard" replace />;
+    return <Navigate to="/admin-dashboard" replace />;
   }
 
   return children;
 }
 
-
 // ADMIN ONLY
 function AdminRoute({ children }) {
-
   const role = localStorage.getItem("role");
 
   if (role !== "admin") {
@@ -44,33 +40,29 @@ function AdminRoute({ children }) {
   return children;
 }
 
-
 function AppContent() {
-
   const location = useLocation();
 
-  // Hide Sidebar only on Login page
+  // Get logged-in user's role
+  const role = localStorage.getItem("role");
+
+  // Hide Sidebar on Login page
   const isLoginPage = location.pathname === "/";
 
   return (
     <>
-      {!isLoginPage && <Sidebar />}
+      {/* Sidebar only for normal users */}
+      {!isLoginPage && role === "user" && <Sidebar />}
 
       <Routes>
-
         {/* Login */}
-        <Route
-          path="/"
-          element={<Login />}
-        />
-
+        <Route path="/" element={<Login />} />
 
         {/* Home - Both User and Admin */}
-        <Route
-          path="/Home"
-          element={<Home />}
-        />
+        <Route path="/Home" element={<Home />} />
 
+        {/* Profile - Both User and Admin */}
+        <Route path="/profile" element={<Profile />} />
 
         {/* User Dashboard - USER ONLY */}
         <Route
@@ -82,7 +74,6 @@ function AppContent() {
           }
         />
 
-
         {/* Submit Complaint - USER ONLY */}
         <Route
           path="/submit"
@@ -93,13 +84,8 @@ function AppContent() {
           }
         />
 
-
         {/* Complaints - Both User and Admin */}
-        <Route
-          path="/complaints"
-          element={<Complaints />}
-        />
-
+        <Route path="/complaints" element={<Complaints />} />
 
         {/* Admin Dashboard - ADMIN ONLY */}
         <Route
@@ -111,43 +97,25 @@ function AppContent() {
           }
         />
 
-
         {/* About Us - Both */}
-        <Route
-          path="/about"
-          element={<AboutUs />}
-        />
-
+        <Route path="/about" element={<AboutUs />} />
 
         {/* FAQ - Both */}
-        <Route
-          path="/faq"
-          element={<FAQ />}
-        />
-
+        <Route path="/faq" element={<FAQ />} />
 
         {/* Help Center - Both */}
-        <Route
-          path="/help-center"
-          element={<HelpCenter />}
-        />
-
+        <Route path="/help-center" element={<HelpCenter />} />
       </Routes>
     </>
   );
 }
 
-
 function App() {
-
   return (
     <BrowserRouter>
-
       <AppContent />
-
     </BrowserRouter>
   );
 }
-
 
 export default App;

@@ -754,36 +754,8 @@ function AdminDashboard() {
 
 
                     {/* ADMIN PROFILE */}
-                    <div className="sidebar-bottom">
+                    
 
-                        <div className="admin-profile">
-
-                            <div className="avatar">
-                                A
-                            </div>
-
-                            <div>
-                                <strong>
-                                    Admin
-                                </strong>
-
-                                <small>
-                                    Administrator
-                                </small>
-                            </div>
-
-                        </div>
-
-
-                        <Link
-                            to="/dashboard"
-                            className="nav-item"
-                        >
-                            <span>🚪</span>
-                            Logout
-                        </Link>
-
-                    </div>
 
                 </aside>
 
@@ -863,23 +835,9 @@ function AdminDashboard() {
                                 }}
                             >
 
-                                <div className="avatar small">
-                                    A
-                                </div>
+                               
 
-                                <div>
-                                    <strong>
-                                        Admin
-                                    </strong>
-
-                                    <small>
-                                        Administrator
-                                    </small>
-                                </div>
-
-                                <span>
-                                    ▾
-                                </span>
+                               
 
 
                                 {/* PROFILE MENU */}
@@ -919,23 +877,7 @@ function AdminDashboard() {
                                         </button>
 
 
-                                        <button
-                                            style={{
-                                                width: "100%",
-                                                padding: "10px 14px",
-                                                border: "none",
-                                                background: "white",
-                                                textAlign: "left",
-                                                cursor: "pointer",
-                                            }}
-                                            onClick={() =>
-                                                alert(
-                                                    "Admin settings will be connected with the admin authentication system."
-                                                )
-                                            }
-                                        >
-                                            ⚙️ Settings
-                                        </button>
+                                       
 
                                     </div>
 

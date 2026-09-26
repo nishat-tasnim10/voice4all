@@ -67,12 +67,7 @@ function Sidebar() {
                         Dashboard
                     </Link>
 
-                    <Link
-                        to="/admin-dashboard"
-                        onClick={handleNavigation}
-                    >
-                        Admin Dashboard
-                    </Link>
+                    
 
                     <Link
                       to="/"

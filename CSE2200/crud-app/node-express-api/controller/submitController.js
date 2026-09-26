@@ -2,6 +2,11 @@ import Submit from "../model/submit.js";
 
 import cloudinary from "../config/cloudinary.js";
 
+
+// =========================
+// CREATE COMPLAINT
+// =========================
+
 export const createSubmit = async (req, res) => {
 
   try {
@@ -69,6 +74,68 @@ export const createSubmit = async (req, res) => {
     return res.status(500).json({
 
       message: "Failed to submit complaint",
+
+      error: error.message,
+
+    });
+
+  }
+
+};
+
+
+// =========================
+// GET COMPLAINTS
+// =========================
+
+export const getComplaints = async (req, res) => {
+
+  try {
+
+    let complaints;
+
+
+    // =========================
+    // ADMIN
+    // =========================
+
+    if (req.user.role === "admin") {
+
+      // Admin sees ALL complaints
+
+      complaints = await Submit.find()
+        .populate("user", "username email")
+        .sort({ createdAt: -1 });
+
+    }
+
+
+    // =========================
+    // NORMAL USER
+    // =========================
+
+    else {
+
+      // User sees ONLY their own complaints
+
+      complaints = await Submit.find({
+        user: req.user.id,
+      })
+        .populate("user", "username email")
+        .sort({ createdAt: -1 });
+
+    }
+
+
+    return res.status(200).json(complaints);
+
+  } catch (error) {
+
+    console.error("Get Complaints Error:", error);
+
+    return res.status(500).json({
+
+      message: "Failed to load complaints",
 
       error: error.message,
 
